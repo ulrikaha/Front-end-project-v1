@@ -2,13 +2,15 @@
 
 import Link from "next/link";
 import { useState } from "react";
-
+import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
@@ -50,6 +52,9 @@ export default function RegisterForm() {
       if (res.ok) {
         const form = e.target as HTMLFormElement;
         form.reset();
+        //Redirect to login page
+        router.push("/login");
+
       } else {
         console.log("User registration failed.")
       }
