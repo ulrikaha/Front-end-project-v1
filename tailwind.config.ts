@@ -8,13 +8,25 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        'custom-green': '#486349',
+        'custom-yellow': '#d8c690',
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      fontFamily: {
+        custom: ['Libre Baskerville', 'serif'],
+        lora: ['Lora', 'serif'],
+      },
+      borderWidth: {
+        '12': '12px',
     },
   },
+},
   plugins: [],
-}
-export default config
+};
+
+export default config;
