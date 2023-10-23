@@ -7,9 +7,9 @@ export default function RegisterForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const {error, setError} = useState("");
+  const [error, setError] = useState("");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
     
     if (!name || !email  || !password) {
@@ -30,7 +30,7 @@ export default function RegisterForm() {
 
 
       if (res.ok) {
-        const form = e.target;
+        const form = e.target as HTMLFormElement;
         form.reset();
       } else {
         console.log("User registration failed.")
@@ -73,13 +73,6 @@ export default function RegisterForm() {
             placeholder="Password"
            
           />
-          <input
-            className="w-[400px] border border-gray-200 font-baskerville"
-            type="password"
-            name="repeatPassword"
-            placeholder="Repeat Password"
-            
-          />
 
           <div className="flex items-center justify-end">
             <button className="bg-custom-green text-white font-baskerville px-4 py-2 rounded-lg">
@@ -89,13 +82,13 @@ export default function RegisterForm() {
 
           {error && (
             <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2">
-             {setError}
+              {error}
             </div>
           )}
 
-        <Link className="text-sm mt-3 text-right" href="/login">
-          Already have an account? <span className="underline">Login</span>
-        </Link>
+          <Link className="text-sm mt-3 text-right" href={"/"}>
+            Already have an account? <span className="underline">Login</span>
+          </Link>
         </form>
       </div>
     </div>
