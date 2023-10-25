@@ -1,10 +1,11 @@
+import NavbarSearch from "@/components/NavbarSearch";
 
 
 export default function Home() {
   return (
    
     <div>
-    <h1>Home</h1>
+   <NavbarSearch />
     </div>
 
   )

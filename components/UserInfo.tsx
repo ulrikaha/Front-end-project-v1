@@ -17,7 +17,7 @@ const {data: session} = useSession();
            <div> 
             Email: <span className="font-bold">{session?.user?.email}</span>
            </div>
-           <button 
+            <button 
            onClick={() => signOut()}
            className="bg-red-500 font-baskerville text-white px-6 py-2 mt-3">
             Log Out

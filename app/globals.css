@@ -3,3 +3,9 @@
 @import 'tailwindcss/utilities';
 
 
+nav {
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-image: url('/imgs/cabin-navbar.png');
+    height: 529px;
+}
