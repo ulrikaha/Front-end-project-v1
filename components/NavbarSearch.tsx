@@ -1,9 +1,10 @@
-'use client';
+ 'use client';
 
 import Link from 'next/link';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
+import DatePickerPackage from './DatePickerPackage';
 
 const NavbarSearch = () => {
    
@@ -25,6 +26,7 @@ const NavbarSearch = () => {
                 </Link>
                 
                
+
                     <ul className="lg:flex list-none ml-auto">
                         <li className="nav-item text-custom-yellow font-custom px-4 text-xl">
                             <Link href="/">
@@ -37,29 +39,18 @@ const NavbarSearch = () => {
                             </Link>
                         </li>
                         <li className="nav-item px-4">
-                            <Link href="/dashboard"> {/*only navigate to if user is logged in}*/}
+                            <Link href="/dashboard"> {/*Only navigate to if user is logged in}*/}
                                 <FontAwesomeIcon icon={faUserCircle} style={{ color: "#cbb26a" , fontSize: "24px" }} />
                             </Link>
                         </li>
                     </ul>
+                    
                 </div>
-           
+               
+           <DatePickerPackage /> {/* Datepicker*/}
+             
         </nav>
     );
 };
 
 export default NavbarSearch;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
