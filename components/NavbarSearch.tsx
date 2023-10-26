@@ -52,6 +52,7 @@ const NavbarSearch = () => {
                 <div className="w-full lg:w-64 flex items-center justify-center">
           <DateRangeComp />
           <PackageSelector />
+          <button className="text-xl md-5 p-3 px-4 rounded-lg font-custom text-black btn-primary bg-custom-yellow">Search</button>
         </div>
              
         </nav>

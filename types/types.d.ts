@@ -5,3 +5,9 @@ interface Package {
     description: string;
     rating: number;
   }
+
+  interface Booking {
+    package: Package;
+    checkInDate: Date;
+    checkOutDate: Date;
+  }
