@@ -3,7 +3,6 @@
 
 import { useEffect, useRef, useState } from 'react'
 import { DateRange } from 'react-date-range'
-
 import format from 'date-fns/format'
 import { addDays } from 'date-fns'
 
@@ -49,16 +48,18 @@ const hideOnClickOutside = (e: MouseEvent) => {
 
   return (
     <div className="calendarWrap">
-
-      <input
+ <div className="relative">
+        <input
         value={`${format(range[0].startDate, "dd/MM/yyyy")} to ${format(range[0].endDate, "dd/MM/yyyy")}`}
         readOnly
-                className="inputBox"
+                className="inputBox border rounded-xl p-2 h-36 w-100 font-custom text-xl text-center bg-gray-200"
                 onClick={ () => setOpen(open => !open) }
               />
+             
 
-              <div ref={refOne}>
+              
                 {open && 
+                  <div ref={refOne} className="absolute bg-gray-100 border rounded p-2 z-10">
                   <DateRange
                     onChange={item => {
                       if (item.selection.startDate && item.selection.endDate) {
@@ -76,9 +77,10 @@ const hideOnClickOutside = (e: MouseEvent) => {
                     direction="horizontal"
                     className="calendarElement"
                   />
-                }
+                
               </div>
-
+            })
+            </div>
             </div>
           )
         }

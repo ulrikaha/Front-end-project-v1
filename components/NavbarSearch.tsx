@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import DateRangeComp from './DateRangeComp';
+import PackageSelector from './PackageSelector';
 
 
 const NavbarSearch = () => {
@@ -48,7 +49,10 @@ const NavbarSearch = () => {
                     
                 </div>
                
-           <DateRangeComp /> {/* Datepicker*/}
+                <div className="w-full lg:w-64 flex items-center justify-center">
+          <DateRangeComp />
+          <PackageSelector />
+        </div>
              
         </nav>
     );
