@@ -4,7 +4,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import DatePickerPackage from './DatePickerPackage';
+import DateRangeComp from './DateRangeComp';
+
 
 const NavbarSearch = () => {
    
@@ -29,12 +30,12 @@ const NavbarSearch = () => {
 
                     <ul className="lg:flex list-none ml-auto">
                         <li className="nav-item text-custom-yellow font-custom px-4 text-xl">
-                            <Link href="/">
+                            <Link href="/login">
                                 Login
                             </Link>
                         </li>
                         <li className="nav-item text-custom-yellow font-custom px-4 text-xl">
-                            <Link href="/about">
+                            <Link href="/register">
                                 Register
                             </Link>
                         </li>
@@ -47,7 +48,7 @@ const NavbarSearch = () => {
                     
                 </div>
                
-           <DatePickerPackage /> {/* Datepicker*/}
+           <DateRangeComp /> {/* Datepicker*/}
              
         </nav>
     );
