@@ -15,9 +15,8 @@ const handlePackageChange = (selectedPackage: string) => {
 };
 
   return (
-    <div className="inputBox border rounded-xl p-2 h-36 w-100 font-custom text-xl text-center bg-gray-200">
+    <div className="inputBox border rounded-xl p-2 h-20 w-100 font-custom text-xl text-center bg-gray-200">
     <label>Choose your package</label>
-    <br></br>
     <br></br>
     <select>
         <option value="all">All</option>

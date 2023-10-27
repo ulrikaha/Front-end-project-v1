@@ -2,14 +2,7 @@
 
 import React, { createContext, useContext, useState, Dispatch, SetStateAction } from 'react';
  
-// Define the properties of a package here
-interface Package {
-    category: string;
-    price: number;
-    name: string;
-    description: string;
-    rating: number;
-  }
+
 
 interface PackageContextValue {
     selectedPackage: Package | null;

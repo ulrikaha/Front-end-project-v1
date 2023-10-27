@@ -52,7 +52,7 @@ const hideOnClickOutside = (e: MouseEvent) => {
         <input
         value={`${format(range[0].startDate, "dd/MM/yyyy")} to ${format(range[0].endDate, "dd/MM/yyyy")}`}
         readOnly
-                className="inputBox border rounded-xl p-2 h-36 w-100 font-custom text-xl text-center bg-gray-200"
+                className="inputBox border rounded-xl p-2 h-20 w-100 font-custom text-xl text-center bg-gray-200"
                 onClick={ () => setOpen(open => !open) }
               />
              

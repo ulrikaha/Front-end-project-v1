@@ -6,11 +6,31 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
 import DateRangeComp from './DateRangeComp';
 import PackageSelector from './PackageSelector';
+import React, { useState } from 'react';
+
 
 
 const NavbarSearch = () => {
-   
-
+    const [selectedPackage, setSelectedPackage] = useState('all'); // Initialize with a default value
+    const [packages, setPackages] = useState([]); // State to store fetched packages
+  
+    const handleSearch = async () => {
+      try {
+        const response = await fetch(`/api/package/route?selectedPackage=${selectedPackage}`);
+        
+        if (response.ok) {
+          const packages = await response.json();
+          // Update the state with the fetched packages
+          setPackages(packages);
+        } else {
+          // Handle errors
+          console.error('Error fetching packages:', response.status);
+        }
+      } catch (error) {
+        // Handle any unexpected errors
+        console.error('Error:', error);
+      }
+    };
   
 
     return (
@@ -21,8 +41,8 @@ const NavbarSearch = () => {
                         <Image
                             src="/imgs/logo-1.png"
                             alt="Nothernnest Retreat Logo"
-                            width={350} // This must be adjusted for mobile
-                            height={214} // This must be adjusted for mobile
+                            width={200} // This must be adjusted for mobile
+                            height={200} // This must be adjusted for mobile
                         />
                     </div>
                 </Link>
@@ -52,7 +72,9 @@ const NavbarSearch = () => {
                 <div className="w-full lg:w-64 flex items-center justify-center">
           <DateRangeComp />
           <PackageSelector />
-          <button className="text-xl md-5 p-3 px-4 rounded-lg font-custom text-black btn-primary bg-custom-yellow">Search</button>
+          <button 
+          onClick={handleSearch}
+          className="text-xl md-5 p-3 px-4 rounded-lg font-custom text-black btn-primary bg-custom-yellow md:ml-1">Search</button>
         </div>
              
         </nav>
