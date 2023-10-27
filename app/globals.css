@@ -3,9 +3,29 @@
 @import 'tailwindcss/utilities';
 
 
-nav {
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-image: url('/imgs/cabin-navbar.png');
-    height: 529px;
-}
+/* For screens with a width of 1440px and wider, show navsearch */
+@media (min-width: 1440px) {
+    .navsearch {
+      background-size: 100% auto;
+      background-repeat: no-repeat;
+      background-image: url('/imgs/cabin-navbar.png');
+      height: 529px;
+    }
+  
+    .navgreen {
+      display: none; /* Hide navgreen on larger screens */
+    }
+  }
+  
+  /* For screens with a width of 1439px and smaller, show navgreen */
+  @media (max-width: 1439px) {
+    .navsearch {
+      display: none; /* Hide navsearch on smaller screens */
+    }
+  
+    .navgreen {
+      background-color: #486349;
+      display: block; /* Show navgreen on smaller screens */
+    }
+  }
+  

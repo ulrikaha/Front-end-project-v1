@@ -34,7 +34,7 @@ const NavbarSearch = () => {
   
 
     return (
-        <nav className="relative flex flex-wrap items-start justify-between bg-gray-800 p-4">
+        <nav className="navsearch relative flex flex-wrap items-start justify-between bg-gray-800 p-4">
             <div className="container mx-auto flex items-center justify-between">
                 <Link href="/">
                     <div className="flex items-center">
