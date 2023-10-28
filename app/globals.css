@@ -6,8 +6,9 @@
 /* For screens with a width of 1440px and wider, show navsearch */
 @media (min-width: 1440px) {
     .navsearch {
-      background-size: 100% auto;
+      background-size: cover;
       background-repeat: no-repeat;
+      background-position: center;
       background-image: url('/imgs/cabin-navbar.png');
       height: 529px;
     }
@@ -28,4 +29,12 @@
       display: block; /* Show navgreen on smaller screens */
     }
   }
+  
+  .custom-margin-left {
+    margin-left: 100px; /* For the search button on searchNav */
+  }
+
+.xl-font-size {
+  font-size: 45px;
+}
   

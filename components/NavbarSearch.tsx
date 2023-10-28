@@ -68,14 +68,23 @@ const NavbarSearch = () => {
                     </ul>
                     
                 </div>
+                <div className="w-full flex justify-end text-white font-custom xl-font-size">Explore our luxury & romantic cabins for couples</div>
                
-                <div className="w-full lg:w-64 flex items-center justify-center">
-          <DateRangeComp />
-          <PackageSelector />
-          <button 
-          onClick={handleSearch}
-          className="text-xl md-5 p-3 px-4 rounded-lg font-custom text-black btn-primary bg-custom-yellow md:ml-1">Search</button>
-        </div>
+<div className="w-full flex justify-center items-center flex-wrap">
+  <div className="lg:w-64 flex items-center">
+    <DateRangeComp />
+    <PackageSelector />
+  </div>
+  <button
+    onClick={handleSearch}
+    className="text-xl md-5 p-3 px-5 rounded-lg font-custom text-black btn-primary bg-custom-yellow custom-margin-left"
+  >
+    Search
+  </button>
+</div>
+
+
+
              
         </nav>
     );
