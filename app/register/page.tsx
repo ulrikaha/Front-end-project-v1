@@ -1,3 +1,4 @@
+import NavbarGreen from "@/components/NavbarGreen";
 import RegisterForm from "@/components/RegisterForm";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
@@ -8,5 +9,7 @@ export default async function Register() {
   
     if (session) redirect("/dashboard");
   
-    return <RegisterForm />;
+    return  <> <NavbarGreen /> 
+    <RegisterForm />;
+   </>
   }

@@ -66,8 +66,8 @@ const NavbarSearch = () => {
                             </Link>
                         </li>
                     </ul>
+                    </div>
                     
-                </div>
                 <div className="w-full flex justify-end text-white font-custom xl-font-size">Explore our luxury & romantic cabins for couples</div>
                
 <div className="w-full flex justify-center items-center flex-wrap">

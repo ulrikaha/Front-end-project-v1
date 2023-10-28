@@ -1,6 +1,6 @@
 'use client';
 
-import PackageCard from "@/components/PackageCard";
+import PackageCard from "@/components/PackageCardListing";
 import { useState } from "react";
 
 
