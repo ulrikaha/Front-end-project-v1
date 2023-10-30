@@ -4,35 +4,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import DateRangeComp from './DateRangeComp';
-import PackageSelector from './PackageSelector';
-import React, { useState } from 'react';
+import SearchBar from './SearchBar';
 
 
 
 const NavbarSearch = () => {
-    const [selectedPackage, setSelectedPackage] = useState('all'); // Initialize with a default value
-    const [packages, setPackages] = useState([]); // State to store fetched packages
-  
-    const handleSearch = async () => {
-      try {
-        const response = await fetch(`/api/package/route?selectedPackage=${selectedPackage}`);
-        
-        if (response.ok) {
-          const packages = await response.json();
-          // Update the state with the fetched packages
-          setPackages(packages);
-        } else {
-          // Handle errors
-          console.error('Error fetching packages:', response.status);
-        }
-      } catch (error) {
-        // Handle any unexpected errors
-        console.error('Error:', error);
-      }
-    };
-  
-
+ 
     return (
         <nav className="navsearch relative flex flex-wrap items-start justify-between bg-gray-800 p-4">
             <div className="container mx-auto flex items-center justify-between">
@@ -47,9 +24,7 @@ const NavbarSearch = () => {
                     </div>
                 </Link>
                 
-               
-
-                    <ul className="lg:flex list-none ml-auto">
+                        <ul className="lg:flex list-none ml-auto">
                         <li className="nav-item text-custom-yellow font-custom px-4 text-xl">
                             <Link href="/login">
                                 Login
@@ -67,26 +42,11 @@ const NavbarSearch = () => {
                         </li>
                     </ul>
                     </div>
-                    
+
                 <div className="w-full flex justify-end text-white font-custom xl-font-size">Explore our luxury & romantic cabins for couples</div>
-               
-<div className="w-full flex justify-center items-center flex-wrap">
-  <div className="lg:w-64 flex items-center">
-    <DateRangeComp />
-    <PackageSelector />
-  </div>
-  <button
-    onClick={handleSearch}
-    className="text-xl md-5 p-3 px-5 rounded-lg font-custom text-black btn-primary bg-custom-yellow custom-margin-left"
-  >
-    Search
-  </button>
-</div>
+         <SearchBar />
 
-
-
-             
-        </nav>
+</nav>
     );
 };
 

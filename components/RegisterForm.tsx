@@ -20,8 +20,6 @@ export default function RegisterForm() {
       return;
     }
 
-   
-
     try {
     const resUserExists = await fetch("/api/userExists", {
         method: "POST",

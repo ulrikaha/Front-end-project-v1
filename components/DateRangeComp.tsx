@@ -1,6 +1,6 @@
 'use client';
 
-
+import { useSearchContext } from '../context/SearchContext'
 import { useEffect, useRef, useState } from 'react'
 import { DateRange } from 'react-date-range'
 import format from 'date-fns/format'
@@ -10,6 +10,7 @@ import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 
 const DateRangeComp = () => {
+  const { updateSearchCriteria } = useSearchContext();
 
   // date state
   const [range, setRange] = useState([
@@ -48,26 +49,34 @@ const hideOnClickOutside = (e: MouseEvent) => {
 
   return (
     <div className="calendarWrap">
+      <div className="ml-4 font-custom text-xl">Check in & Check out</div>
+     
  <div className="relative">
         <input
         value={`${format(range[0].startDate, "dd/MM/yyyy")} to ${format(range[0].endDate, "dd/MM/yyyy")}`}
         readOnly
-                className="inputBox border rounded-xl p-2 h-20 w-100 font-custom text-xl text-center"
+                className="inputBox border rounded-xl p-2 h-20 w-100  font-custom text-xl text-center"
                 onClick={ () => setOpen(open => !open) }
               />
              
 
               
-                {open && 
-                  <div ref={refOne} className="absolute bg-gray-100 border rounded p-2 z-10">
+                {open && ( 
+                  <div ref={refOne} className="absolute bg-gray-200 border rounded p-2 z-10">
                   <DateRange
-                    onChange={item => {
+                    onChange={(item) => {
                       if (item.selection.startDate && item.selection.endDate) {
                         setRange([{
                           startDate: item.selection.startDate,
                           endDate: item.selection.endDate,
                           key: 'selection'
-                        }])
+                        },
+                      ]);
+                      updateSearchCriteria(
+                        item.selection.startDate,
+                        item.selection.endDate,
+                        'all'
+                      );
                       }
                     }}
                     editableDateInputs={true}
@@ -77,9 +86,8 @@ const hideOnClickOutside = (e: MouseEvent) => {
                     direction="horizontal"
                     className="calendarElement"
                   />
-                
-              </div>
-            })
+                </div>
+            )}
             </div>
             </div>
           )

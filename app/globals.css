@@ -16,7 +16,7 @@
     .navgreen {
       display: none; /* Hide navgreen on larger screens */
     }
-  }
+    }
   
   /* For screens with a width of 1439px and smaller, show navgreen */
   @media (max-width: 1439px) {
@@ -27,6 +27,9 @@
     .navgreen {
       background-color: #486349;
       display: block; /* Show navgreen on smaller screens */
+    }
+    .searchbar {
+     display: center; /* show searchBar  */
     }
   }
   

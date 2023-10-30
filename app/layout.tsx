@@ -1,4 +1,5 @@
 import { AuthProvider } from './Providers'
+import { SearchProvider } from '../context/SearchContext'
 import type { Metadata } from 'next'
 import './globals.css'
 
@@ -19,9 +20,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <AuthProvider>
-        
+        <SearchProvider>
             {children}
-         
+            </SearchProvider>
         </AuthProvider>
       </body>
     </html>
