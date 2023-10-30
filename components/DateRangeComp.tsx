@@ -1,16 +1,17 @@
 'use client';
 
-import { useSearchContext } from '../context/SearchContext'
+
 import { useEffect, useRef, useState } from 'react'
 import { DateRange } from 'react-date-range'
 import format from 'date-fns/format'
 import { addDays } from 'date-fns'
+import { useSearchContext } from '../context/SearchContext'
 
 import 'react-date-range/dist/styles.css'
 import 'react-date-range/dist/theme/default.css'
 
 const DateRangeComp = () => {
-  const { updateSearchCriteria } = useSearchContext();
+  const { startDate, endDate, updateSearchCriteria } = useSearchContext();
 
   // date state
   const [range, setRange] = useState([
@@ -66,7 +67,8 @@ const hideOnClickOutside = (e: MouseEvent) => {
                   <DateRange
                     onChange={(item) => {
                       if (item.selection.startDate && item.selection.endDate) {
-                        setRange([{
+                        setRange([
+                          {
                           startDate: item.selection.startDate,
                           endDate: item.selection.endDate,
                           key: 'selection'

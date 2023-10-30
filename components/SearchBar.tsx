@@ -4,10 +4,6 @@ import DateRangeComp from "./DateRangeComp";
 import PackageSelector from "./PackageSelector";
 
 
-
-
-
-
 export default function SearchBar() {
     const { startDate, endDate, selectedPackage, updateSearchCriteria } = useSearchContext();
 
@@ -28,8 +24,7 @@ export default function SearchBar() {
     <DateRangeComp />
     <PackageSelector />
     <button
-     
-      className="text-xl md-5 p-3 px-5 rounded-lg font-custom text-black btn-primary bg-custom-yellow"
+     className="text-xl md-5 p-3 px-5 rounded-lg font-custom text-black btn-primary bg-custom-yellow"
       onClick={handleSearchClick}
     >
       Search
