@@ -8,13 +8,14 @@ const packageSchema = new Schema(
         },
         category: {
             type: String,
+            enum: ["All", "Deluxe", "Standard", "Budget"], 
             required: true,
         },
         price: {
             type: Number,
             required: true,
         },
-        name: {
+        cabinName: {
             type: String,
             required: true,
         },
@@ -22,10 +23,7 @@ const packageSchema = new Schema(
             type: String,
             required: true,
         },
-        rating: {
-            type: Number,
-            required: true,
-        },
+      
         },
         { timestamps: true }
         );
