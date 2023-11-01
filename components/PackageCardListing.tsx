@@ -1,6 +1,6 @@
 'use client';
 
-const PackageCard = ({ packageData }: { packageData: Package }) => {
+const PackageCardListing = ({ packageData }: { packageData: Package }) => {
     const { imgUrl, category, price, name, description, rating } = packageData;
 
     return (
@@ -16,4 +16,4 @@ const PackageCard = ({ packageData }: { packageData: Package }) => {
     );
 };
 
-export default PackageCard;
+export default PackageCardListing

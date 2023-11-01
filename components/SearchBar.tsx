@@ -1,22 +1,26 @@
 'use client';
+
+import { useRouter } from 'next/navigation';
 import { useSearchContext } from '../context/SearchContext';
 import DateRangeComp from "./DateRangeComp";
 import PackageSelector from "./PackageSelector";
 
 
 export default function SearchBar() {
+    const router = useRouter();
     const { startDate, endDate, selectedPackage, updateSearchCriteria } = useSearchContext();
 
-    const handleSearchClick = () => {
-        // Here, you can perform your search based on startDate, endDate, and selectedPackage.
-        // You may want to navigate to a different page or fetch data from MongoDB.
-        // For simplicity, we'll just log the criteria for now.
-        console.log('Start Date:', startDate);
-        console.log('End Date:', endDate);
-        console.log('Selected Package:', selectedPackage);
-      };
+    const handleSearchClick = async () => {
+        console.log(selectedPackage);
+        const listingPageUrl = `/listings?selectedPackage=${selectedPackage}`;
+        router.push(listingPageUrl);
+    };
     
-  return (
+     
+      
+  
+
+return (
 
 <div className="searchbar bar w-full flex justify-center">
 <div className="bg-gray-200 rounded-xl shadow-md p-6 m-4 w-1/2">

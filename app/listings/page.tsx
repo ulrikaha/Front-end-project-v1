@@ -1,26 +1,40 @@
 'use client';
 
-import PackageCard from "@/components/PackageCardListing";
-import { useState } from "react";
+
+import { useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react';
+import PackageCardListing from '@/components/PackageCardListing';
 
 
 
 export default function Listings() {
- 
+  const searchParams = useSearchParams()
+  const selectedPackage =  searchParams.get('selectedPackage')
+  const [data, setData] = useState(null);
 
-    const [packages, setPackages] = useState<Package[]>([]);
-  
+  useEffect(() => {
+    if (selectedPackage) {
+      const fetchData = async () => {
+        const response = await fetch(`/api/packages?selectedPackage=${selectedPackage}`);
+        if (response.ok) {
+          const data = await response.json();
+          setData(data);
+        } else {
+          console.log('Error fetching data:', response.statusText);
+        }
+      };
 
+      fetchData();
+    }
+  }, [selectedPackage]);
+
+  if (!selectedPackage) {
+    return Error;
+  }
 
   return (
-    <div>
-        <h1>This is the listing page</h1>
-      {/* Render package listings */}
-      {packages.map((packageData) => (
-        <PackageCard key={packageData.category} packageData={packageData} />
-      ))}
-    </div>
+    <>
+      {data && <PackageCardListing packageData={data} />}
+    </>
   );
 }
-
-

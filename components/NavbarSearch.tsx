@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import SearchBar from './SearchBar';
+
 
 
 
@@ -44,7 +44,7 @@ const NavbarSearch = () => {
                     </div>
 
                 <div className="w-full flex justify-end text-white font-custom xl-font-size">Explore our luxury & romantic cabins for couples</div>
-         <SearchBar />
+        
 
 </nav>
     );

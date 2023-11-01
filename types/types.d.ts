@@ -1,4 +1,5 @@
 type Package = {
+    _id: string;
     imgUrl: string,
     category: string,
     price: number,

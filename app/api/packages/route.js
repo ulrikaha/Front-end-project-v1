@@ -18,7 +18,7 @@ export default async function handler(req, res) {
 
       } else {
         // Fetch packages based on the selected package
-        const packages = await Package.find({ name: selectedPackage });
+        const packages = await Package.find({ category: selectedPackage });
         console.log('Selected Packages:', packages);
         res.status(200).json(packages);
       }
@@ -29,4 +29,6 @@ export default async function handler(req, res) {
     console.error('Error fetching packages:', error);
     res.status(500).json({ error: 'Error fetching packages' });
   }
+
+  return res;
 }
