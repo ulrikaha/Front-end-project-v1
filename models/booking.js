@@ -28,8 +28,9 @@ const bookingSchema = new Schema(
             required: true,
         },
         status: {
-            type: String,
-            required: true,
+        type: String,
+        enum: ["active", "cancelled"],
+        default: "active",
         },
         },
         { timestamps: true }
