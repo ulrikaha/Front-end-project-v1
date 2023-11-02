@@ -2,7 +2,7 @@ import { connectMongoDB } from "@/lib/mongodb";
 import Package from "@/models/package";
 
 
-export default async function handler(req, res) {
+export default async function getCabins(req, res) {
   try {
     await connectMongoDB(); 
 

@@ -23,6 +23,10 @@ const packageSchema = new Schema(
             type: String,
             required: true,
         },
+        included: {
+            type: String,
+            required: true,
+        },
       
         },
         { timestamps: true }

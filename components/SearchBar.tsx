@@ -4,28 +4,26 @@ import { useRouter } from 'next/navigation';
 import { useSearchContext } from '../context/SearchContext';
 import DateRangeComp from "./DateRangeComp";
 import PackageSelector from "./PackageSelector";
-
-
 import { useState } from 'react';
+
+
 
 export default function SearchBar() {
   const router = useRouter();
   const { startDate, endDate, selectedPackage, updateSearchCriteria } = useSearchContext();
-  //const [packages, setPackages] = useState([]);
+ 
 
   const handleSearchClick = async () => {
-    try {
-      //const response = await fetch('/api/packages');
-      //const data = await response.json();
-      //setPackages(data);
-      //console.log(packages);
-      
-      const listingPageUrl = `/listings?selectedPackage=${selectedPackage}`;
-      router.push(listingPageUrl);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+   
+      try {
+        const response = await fetch('/api/cabins');
+        const data = await response.json();
+        const cabins = `/cabins?selectedPackage=${selectedPackage}${JSON.stringify(data)}`;
+        router.push(cabins);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
   return (
     <div className="searchbar bar w-full flex justify-center">

@@ -1,13 +1,13 @@
 'use client';
 
-
+import NavbarGreen from '@/components/NavbarGreen';
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react';
 import PackageCardListing from '@/components/PackageCardListing';
 
 
 
-export default function Listings() {
+export default function Cabins() {
   const searchParams = useSearchParams()
   const selectedPackage =  searchParams.get('selectedPackage')
   const [data, setData] = useState(null);
@@ -34,6 +34,7 @@ export default function Listings() {
 
   return (
     <>
+    <NavbarGreen />
       {data && <PackageCardListing packageData={data} />}
     </>
   );
