@@ -3,19 +3,19 @@
 import NavbarGreen from '@/components/NavbarGreen';
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react';
-import PackageCardListing from '@/components/PackageCardListing';
+//import PackageCardListing from '@/components/PackageCardListing';
 
 
 
-export default function Cabins() {
+export default function CabinsPage() {
   const searchParams = useSearchParams()
   const selectedPackage =  searchParams.get('selectedPackage')
-  const [data, setData] = useState(null);
+  const [data, setData] = useState();
 
   useEffect(() => {
     if (selectedPackage) {
       const fetchData = async () => {
-        const response = await fetch(`/api/packages?selectedPackage=${selectedPackage}`);
+        const response = await fetch(`/api/cabins?selectedPackage=${selectedPackage}`);
         if (response.ok) {
           const data = await response.json();
           setData(data);
@@ -28,14 +28,10 @@ export default function Cabins() {
     }
   }, [selectedPackage]);
 
-  if (!selectedPackage) {
-    return Error;
-  }
-
   return (
     <>
-    <NavbarGreen />
-      {data && <PackageCardListing packageData={data} />}
+      <NavbarGreen />
+      {data && <p>{JSON.stringify(data)}</p>}
     </>
   );
 }

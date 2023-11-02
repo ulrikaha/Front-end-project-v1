@@ -1,5 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 
+//add more imgUrls here
+
 const packageSchema = new Schema(
     {
         imgUrl: {
@@ -15,25 +17,26 @@ const packageSchema = new Schema(
             type: Number,
             required: true,
         },
-        cabinName: {
+         description: {
             type: String,
             required: true,
         },
-        description: {
+         cabinName: {
             type: String,
             required: true,
         },
         included: {
-            type: String,
+            type: [String],
             required: true,
+            },
+           
         },
-      
-        },
-        { timestamps: true }
-        );
-
+        { timestamps: true });
     
-const Package = mongoose.model('Package', packageSchema);
+        
 
-module.exports = Package;
+export default mongoose.models.Package || mongoose.model("Package", packageSchema);
+
+       
+    
 

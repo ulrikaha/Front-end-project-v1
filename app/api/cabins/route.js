@@ -1,34 +1,42 @@
 import { connectMongoDB } from "@/lib/mongodb";
 import Package from "@/models/package";
+import { NextResponse } from "next/server";
 
 
-export default async function getCabins(req, res) {
+//export default async function handler
+
+export async function GET(req, res) {
+  console.log(req);
+  const url = new URL(req.url)
+  const selectedPackage = url.searchParams.get("selectedPackage")
+  console.log("REQUEST", url, url.searchParams)
+
   try {
-    await connectMongoDB(); 
+    await connectMongoDB();
 
-    if (req.method === 'GET') {
-      const { selectedPackage } = req.query; // Retrieve the selected package from the query parameter
-      
-      console.log('Selected Package:', selectedPackage); // Log the selected package
-
-      if (selectedPackage === 'all') {
-        // Fetch all packages
-        const packages = await Package.find({});
-        res.status(200).json(packages);
-
-      } else {
-        // Fetch packages based on the selected package
-        const packages = await Package.find({ category: selectedPackage });
-        console.log('Selected Packages:', packages);
-        res.status(200).json(packages);
-      }
-    } else {
-      res.status(405).json({ error: 'Method not allowed' });
-    }
-  } catch (error) {
-    console.error('Error fetching packages:', error);
-    res.status(500).json({ error: 'Error fetching packages' });
+  if (!selectedPackage) {
+    return NextResponse.json({
+      status: 400,
+      data: "No package selected",
+  });
   }
 
-  return res;
+  let packages;
+    if (selectedPackage === "all") {
+      packages = await Package.find({});
+    } else {
+      packages = await Package.find({ category: selectedPackage });
+    }
+
+    return NextResponse.json({
+      status: 200,
+      data: packages,
+  });
+  } catch (error) {
+    console.log("Error fetching packages", error);
+    return NextResponse.json({
+      status: 500,
+      data: "error fetching packages",
+  });
+  }
 }
