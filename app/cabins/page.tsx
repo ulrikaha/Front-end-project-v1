@@ -3,7 +3,8 @@
 import NavbarGreen from '@/components/NavbarGreen';
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react';
-//import PackageCardListing from '@/components/PackageCardListing';
+import  CabinCard from '@/components/CabinCard';
+
 
 
 
@@ -28,10 +29,25 @@ export default function CabinsPage() {
     }
   }, [selectedPackage]);
 
+
+
+
   return (
     <>
       <NavbarGreen />
       {data && <p>{JSON.stringify(data)}</p>}
+      <CabinCard />
     </>
   );
 }
+
+
+
+
+
+
+  
+
+  
+
+ 

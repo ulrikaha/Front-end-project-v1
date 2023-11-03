@@ -3,13 +3,11 @@ import Package from "@/models/package";
 import { NextResponse } from "next/server";
 
 
-//export default async function handler
-
 export async function GET(req, res) {
   console.log(req);
   const url = new URL(req.url)
   const selectedPackage = url.searchParams.get("selectedPackage")
-  console.log("REQUEST", url, url.searchParams)
+  //console.log("REQUEST", url, url.searchParams)
 
   try {
     await connectMongoDB();

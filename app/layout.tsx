@@ -2,6 +2,7 @@ import { AuthProvider } from './Providers'
 import { SearchProvider } from '../context/SearchContext'
 import type { Metadata } from 'next'
 import './globals.css'
+import Footer from '@/components/Footer'
 
 
 
@@ -22,6 +23,7 @@ export default function RootLayout({
         <AuthProvider>
         <SearchProvider>
             {children}
+            <Footer />
             </SearchProvider>
         </AuthProvider>
       </body>

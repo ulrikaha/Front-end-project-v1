@@ -4,14 +4,6 @@ const bookingSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: "User",
         },
-        dateCheckIn: {
-            type: Date,
-            required: true,
-        },
-        dateCheckOut: {
-            type: Date,
-            required: true,
-        },
         cabinName: {
             type: Schema.Types.ObjectId,
             ref: "Package",
