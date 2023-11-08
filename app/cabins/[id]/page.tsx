@@ -1,27 +1,32 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+
 
 
   
 
-export default function CabinPage() {
+export default function CabinPage({ params }: { params: { id: string } }) {
     const [cabin, setCabin] = useState<Package>();
-    const params = useParams(); // This is how you get the params in a client component?
+   
 
-console.log(params, "hej2");
+
 
     useEffect(() => {
         const fetchData = async () => {
+
             if (params) {
-                const { id } = params; // Now we can destructure 'id' safely
+                const { id } = params;
+
                 try {
                     const response = await fetch(`/api/cabins/${id}`);
-        
+                    console.log(response)
                     if (response.ok) {
+
                         const data = await response.json();
+                        console.log(data);
                         setCabin(data);
+
                     } else {
                         throw new Error('Response was not valid JSON');
                     }
@@ -32,10 +37,10 @@ console.log(params, "hej2");
         };
 
         fetchData();
-    }, [params]);
+    }, []);
 
     return (
-        <main>
+        <>
             <h1>Cabin details</h1>
             {cabin && (
                 <div className="card w-full border shadow-lg">
@@ -48,7 +53,7 @@ console.log(params, "hej2");
                     <p>{cabin.cabinName}</p>
                 </div>
             )}
-        </main>
+        </>
     );
 }
   

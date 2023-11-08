@@ -15,7 +15,7 @@ const PaymentConfirmation = () => {
                 <p className="text-center text-lg mt-8">Your booking reference</p>
                 <p className="text-center text-lg font-bold">XXXXXX?</p>{/* This should be a random boking ref*/}
                 <p className="text-center text-lg mt-8">A receipt for this transaction has been sent to</p>
-                <p className="text-center text-lg font-bold">XXXXXX?</p> {/* This should be the email address of the user */}
+                <p className="text-center text-lg font-bold">user@mail.com</p> {/* This should be the email address of the user */}
             </div>
         </div>
         </div>
