@@ -21,10 +21,10 @@ function PackageSelector() {
       value={selectedPackage}
     >
     
-        <option value="all">All</option>
-        <option value="deluxe">Deluxe</option>
-        <option value="standard">Standard</option>
-        <option value="budget">Budget</option>
+        <option value="All">All</option>
+        <option value="Deluxe">Deluxe</option>
+        <option value="Standard">Standard</option>
+        <option value="Budget">Budget</option>
       </select>
     </div>
     

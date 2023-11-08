@@ -1,38 +1,37 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useParams } from 'next/navigation';
 
-type Params = {
-    params: {
-        id: string;
-    };
-};
 
-export default function CabinPage({ params }: Params) {
+
+export default function CabinPage() {
     const [cabin, setCabin] = useState<Package>();
+    const params = useParams(); // This is how you get the params in a client component
 
 console.log(params);
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                //const response = await fetch(`/api/cabins/${params.id}`);
-                const response = await fetch(`/api/cabins/1`);
-    
-                if (response.ok) {
-                    const data = await response.json();
-                    setCabin(data);
-
-                } else {
-                    throw new Error('Response was not valid JSON');
+            if (params) {
+                const { id } = params; // Now we can destructure 'id' safely
+                try {
+                    const response = await fetch(`/api/cabins/${id}`);
+        
+                    if (response.ok) {
+                        const data = await response.json();
+                        setCabin(data);
+                    } else {
+                        throw new Error('Response was not valid JSON');
+                    }
+                } catch (error) {
+                    console.error(error);
                 }
-            } catch (error) {
-                console.error(error);
             }
         };
 
         fetchData();
-    }, [params.id]);
+    }, [params]);
 
     return (
         <main>
