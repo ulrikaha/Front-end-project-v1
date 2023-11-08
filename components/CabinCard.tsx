@@ -1,47 +1,87 @@
 'use client';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faHeart } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar as faStarRegular, faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 
 
 
+type PackageCardProps = {
+    selectedPackage: {
+    imgUrl: string;
+    cabinName: string;
+    description: string;
+    name: string;
+    price: number;
+    info: string;
+    rating: number;
+    category: string;
+};
+  //handleSearchClick: () => void;
+}
+    
 
 
-
-export default function CabinCard() {
-    return (
-      <div className="flex flex-wrap justify-center">
-        <div className="w-[80%] m-2 p-4 border rounded shadow-lg flex">  {/* Kept as a flex container */}
-          <div className="flex-none mr-5 h-full"> {/* Added margin-right for spacing */}
-            <img src="/imgs/cabin-deluxe.png" alt="deluxe package" className="object-cover h-full w-1/2" /> {/* Adjusted width and height */}
-          </div>
-          <div className="flex-grow p-4"> {/* This div contains the rest of your content */}
-            <div className="flex">
-              <h3 className="text-lg font-bold font-lora">Deluxe</h3>
-            </div>
-            <div>kr per night</div>
-            <div>Name</div>
-            <div>Info</div>
-            <div>4.5</div>
-            <div>
-              <FontAwesomeIcon icon={faStar} className="text-black" />
-              <FontAwesomeIcon icon={faStar} className="text-black" />
-              <FontAwesomeIcon icon={faStar} className="text-black" />
-              <FontAwesomeIcon icon={faStar} className="text-black" />
-              <FontAwesomeIcon icon={faStar} className="text-black" />
-            </div>
-            <div className="heart">
-              <FontAwesomeIcon icon={faHeart} className="text-black" />
-            </div>
-            <button
-              className="text-xl md-5 p-3 px-5 rounded-lg font-custom text-black btn-primary bg-custom-yellow"
-              // onClick={handleSearchClick}
-            >
-              View deal
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
+export default function CabinCard({selectedPackage }: PackageCardProps) {
   
+
+
+
+    return (
+       <div className="flex justify-center">
+        <div className="w-[80%] h-[35%] p-0 border rounded-xl shadow-lg flex relative">
+          <div className="flex-none mr-5 h-full relative">
+            <img src={selectedPackage.imgUrl} alt={selectedPackage.name} className="object-cover h-[100%] w-[100%] rounded-l-xl" />
+            <div className="absolute top-0 right-0 w-[30%] flex items-center justify-center text-center font-lora text-lg font-bold border rounded-xl shadow-lg bg-white mt-3 mr-3">
+              {selectedPackage.category}
+            </div>
+          </div>
+          
+             <div className="flex-grow p-4">
+                <div className="flex-grow p-4 flex flex-col">
+                    <div className="flex">
+                        <h3 className="text-lg font-bold font-lora">{selectedPackage.name}</h3>
+                    </div>
+                    <div className="w-[30%] font-lora text-lg font-bold border rounded-lg shadow-lg text-center">{selectedPackage.price} 
+                    <span className="font-lora font-bold mr-1 ml-1">kr</span>
+                    <span className="font-lora font-normal mr-1">per night</span></div>
+                    <br />
+
+                    <div className="absolute top-0 right-3 p-2 text-3xl">
+                    <FontAwesomeIcon icon={faHeartRegular} className="w-6 h-6" />
+                    </div>
+                   
+                    <div>{selectedPackage.cabinName}</div>
+                    <br />
+                    <div className="mb-4">{selectedPackage.info.join( ', ')}</div>
+
+                        
+                    <div className="flex">
+                        <div className="font-bold">{selectedPackage.rating}</div>
+                        <div>
+                        <FontAwesomeIcon icon={faStar} style={{color: "#e4a935",}} />
+                        <FontAwesomeIcon icon={faStar} style={{color: "#e4a935",}} />
+                        <FontAwesomeIcon icon={faStar} style={{color: "#e4a935",}} />
+                        <FontAwesomeIcon icon={faStar} style={{color: "#e4a935",}} />
+                        <FontAwesomeIcon icon={faStarRegular} style={{color: "#e4a935",}} />
+                        </div>
+                    </div>
+                    
+                    <div className="flex flex-end justify-end"> {/* This div wraps the button and takes the full width */}
+                    <button
+                    className="text-xl p-2 px-4 rounded-lg font-custom text-black bg-custom-yellow"
+                    // onClick={handleSearchClick}
+                        >
+                    View deal
+                    </button>
+                        </div>
+                    </div>
+
+                
+                         </div>
+                        </div>
+                        </div>
+                       
+    );
+}
+   

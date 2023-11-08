@@ -1,12 +1,18 @@
 type Package = {
-    _id: string;
     imgUrl: string,
     category: string,
     price: number,
-    name: string,
     description: string,
+    cabinName: string,
+    included: string[],
+    info: string[],
     rating: number,
+    cabinId: number, 
   }
+
+
+
+
 
   type Booking = {
     package: Package;

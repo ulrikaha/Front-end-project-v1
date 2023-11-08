@@ -11,6 +11,7 @@ const config: Config = {
       colors: {
         'custom-green': '#486349',
         'custom-yellow': '#d8c690',
+        'star': '#E4A935',
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

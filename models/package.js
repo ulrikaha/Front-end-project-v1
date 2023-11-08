@@ -29,6 +29,18 @@ const packageSchema = new Schema(
             type: [String],
             required: true,
             },
+        info: {
+            type: [String],
+            required: true,
+        },
+        rating: {
+            type: Number,
+            required: true,
+        },
+        cabinId: {
+            type: String,
+            required: true,
+        },
            
         },
         { timestamps: true });

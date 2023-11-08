@@ -1,3 +1,4 @@
+
 'use client';
 
 import NavbarGreen from '@/components/NavbarGreen';
@@ -8,10 +9,11 @@ import  CabinCard from '@/components/CabinCard';
 
 
 
+
 export default function CabinsPage() {
   const searchParams = useSearchParams()
   const selectedPackage =  searchParams.get('selectedPackage')
-  const [data, setData] = useState();
+  const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
     if (selectedPackage) {
@@ -19,6 +21,7 @@ export default function CabinsPage() {
         const response = await fetch(`/api/cabins?selectedPackage=${selectedPackage}`);
         if (response.ok) {
           const data = await response.json();
+          console.log(data);
           setData(data);
         } else {
           console.log('Error fetching data:', response.statusText);
@@ -35,11 +38,30 @@ export default function CabinsPage() {
   return (
     <>
       <NavbarGreen />
-      {data && <p>{JSON.stringify(data)}</p>}
-      <CabinCard />
+      <div className='flex flex-wrap justify-center mt-10'>
+          
+      {data && data.data && Array.isArray(data.data) && data.data.map((selectedPackage: any, _id: string) => (
+          <CabinCard
+            key={selectedPackage._id}
+            selectedPackage={selectedPackage}
+          />
+        ))}
+      </div>
+      
     </>
   );
-}
+}  
+    
+  
+
+
+{/* } {data && <p>{JSON.stringify(data)}</p>}  
+
+index */}
+
+
+
+
 
 
 

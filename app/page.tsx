@@ -7,10 +7,6 @@ import AboutUs from "@/components/AboutUs";
 import ActivitiesCarousel from "@/components/ActivitiesCarousell";
 import ReviewCard from "@/components/ReviewCard";
 import Space from "@/components/Space";
-import ReviewCarousel from "@/components/ReviewCarosell";
-
-
-
 
 
 
@@ -31,7 +27,7 @@ export default function Home() {
   <h2 className="text-4xl text-center font-custom text-black mt-12 mb-12 pb-12">Discover Memorable Retreat Experiences</h2>
     <ReviewCard />
     <Space />
-    <ReviewCarousel />
+  
    
    
     </div>
