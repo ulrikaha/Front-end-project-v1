@@ -18,7 +18,7 @@ const ReviewCarousel = () => {
 
     return (
         <div className="container mx-auto my-10">
-            <h3 className="pb-5 ml-10 font-lora font-bold text-xl text-center">Reviews</h3>
+            <h3 className="pb-5 ml-10 font-lora font-bold text-xl mb-4">Reviews</h3>
             <Slider {...settings}>
 
                 <div className="flex flex-wrap">

@@ -8,6 +8,7 @@ type Package = {
     info: string[],
     rating: number,
     cabinId: string, 
+    imgs: string[],
   }
 
   type Booking = {

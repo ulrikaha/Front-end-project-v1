@@ -1,9 +1,20 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
+import Reserve from '@/components/Reserve';
 import Facilities from '@/components/Facilities';
+import ReviewCarousel from '@/components/ReviewCarosell';
 
-
+const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3
+  };
 
 export default function CabinPage({ params }: { params: { id: string } }) {
     const [cabin, setCabin] = useState<Package | null>(null);
@@ -42,28 +53,40 @@ export default function CabinPage({ params }: { params: { id: string } }) {
           fetchData();
         }, [params]);
 
+
+
+
     return (
         <>
         {cabin ? (
-          <div className="card w-full border shadow-lg">
-            <img src={cabin.imgUrl} alt={cabin.category} className="w-full" />
+          <div className="card w-full border shadow-lg relative">
+            <div className="flex justify-between items-center pt-5">
+            <img src={cabin.imgUrl} alt={cabin.category} className="w-full sm:h-[50%] md:h-[30%] lg:h-[25%] object-cover" />
+            </div>  
+            <br />
+            <Slider {...settings}>
+      {cabin.imgs.map((imgs, index) => (
+        <div key={index}>
+          <img src={imgs} alt={`Thumbnail ${index}`} className="w-full object-cover" />
+        </div>
+      ))}
+    </Slider>
+            <div className="absolute top-5 right-0 w-[30%] flex items-center justify-center text-center font-lora text-lg font-bold border rounded-xl shadow-lg bg-white mt-3 mr-3">
+              {cabin.category}
+            </div>
+            <Reserve />
             <Facilities />
             <div className="p-4">
-              <h2 className="text-2xl font-bold">{cabin.category}</h2>
-              <p className="mb-2">{cabin.description}</p>
-              <p className="mb-2">Price: ${cabin.price}</p>
-              <p className="mb-2">Rating: {cabin.rating} stars</p>
-              <p className="mb-2">Name: {cabin.cabinName}</p>
-              {/* Info is an array, map through it to display */}
-              <div className="info">
-                <h3 className="text-xl font-bold">Info:</h3>
-                <ul>
-                  {cabin.info.map((infoItem, index) => (
-                    <li key={index}>{infoItem}</li>
+            <div className=" <div className='flex flex-wrap justify-around items-start w-11/12 mx-auto mt-12 bg-grey-100 p-4 border rounded shadow-lg font-lora'>">
+                <h3 className="mt-10 ml-7 text-xl font-bold font-lora">Included in the package</h3>
+                <ul className='list-disc pl-5 ml-7'>
+                  {cabin.included.map((includedItem, index) => (
+                    <li key={index}>{includedItem}</li>
                   ))}
                 </ul>
               </div>
             </div>
+            <ReviewCarousel />
           </div>
         ) : (
           <p>Loading cabin details...</p>

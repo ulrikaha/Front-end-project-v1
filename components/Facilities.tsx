@@ -4,7 +4,7 @@ import { faDog, faBolt, faUtensils, faWifi, faBed, faParking, faChair, faTv, faH
 
 export default function Facilities() {
     return (
-        <div>
+        <div className='flex flex-wrap justify-around items-start w-11/12 mx-auto mt-12 bg-grey-100 p-4 border rounded shadow-lg font-lora'>
             <h3 className="pb-5 ml-10 font-lora font-bold text-xl">Facilities</h3>
             <div className="flex flex-wrap font-lora">
                 <div className="w-full md:w-1/2 px-4 md:px-10">

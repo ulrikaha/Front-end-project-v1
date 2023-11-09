@@ -41,6 +41,10 @@ const packageSchema = new Schema(
             type: String,
             required: true,
         },
+        imgs: {
+            type: [String],
+            required: true,
+        },
            
         },
         { timestamps: true });

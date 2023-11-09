@@ -19,7 +19,7 @@ type PackageCardProps = {
     category: string;
     cabinId: string;
 };
-  //handleSearchClick: () => void;
+ 
 }
     
 
@@ -73,7 +73,6 @@ export default function CabinCard({selectedPackage }: PackageCardProps) {
                     <Link href={`/cabins/${selectedPackage.cabinId}`} passHref>
                     <button
                     className="text-xl p-2 px-4 rounded-lg font-custom text-black bg-custom-yellow"
-                    // onClick={handleSearchClick}
                         >
                     View deal
                     </button>

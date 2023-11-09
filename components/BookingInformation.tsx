@@ -13,38 +13,39 @@ import { useState } from "react";
                        
     
     return (
-            <div className="grid place-items-center h-screen">
-        <div className="w-3/4 lg:w-1/2 xl:w-1/3 2xl:w-1/4 min-h-[50vh] bg-gray-200 shadow-lg rounded-lg border-t-12">
+            <div className="grid place-items-center mt-10">
+        <div className="w-3/2 lg:w-1/2 xl:w-1/3 2xl:w-1/4 min-h-[50vh] bg-gray-200 shadow-lg rounded-lg border-t-12">
         <div className="w-full bg-custom-green rounded-t-lg flex py-6 -mt-3">
         <p className="text-white text-l font-bold font-lora text-left ml-3">Booking Information</p>
         </div>
+        
         <div className="mt-6 font-lora pt-7">
         <h2 className="text-xl font-bold mt-12">Check-in Date</h2>
         <p className="text-lg mt-8">Date?</p> {/* This should be the check-in date*/}
 
         <h2 className="text-xl font-bold mt-12">Check-out Date</h2> {/* This should be the check-out date*/}
-        <p className="text-center text-lg mt-8">Date?</p>
+        <p className="text-lg mt-8">Date?</p>
 
         <h2 className="text-xl font-bold mt-12">Chosen Cabin</h2>
-        <p className="text-center text-lg mt-8">Cabin?</p> {/* This should be the cabin name*/}
+        <p className="text-lg mt-8">Cabin?</p> {/* This should be the cabin name*/}
 
         <h2 className="text-xl font-bold mt-12">Guests</h2>
-        <p className="text-center text-lg mt-8">2</p>
+        <p className="text-lg mt-8">2</p>
 
         <h2 className="text-xl font-bold mt-12">Selected Package</h2>
-        <p className="text-center text-lg mt-8">Package?</p> {/* This should be the selected package*/}
+        <p className="text-lg mt-8">Package?</p> {/* This should be the selected package*/}
 
         <h2 className="text-xl font-bold mt-12">Included</h2>
-        <p className="text-center text-lg mt-8">Included?</p> {/* This should be the included activities*/}
+        <p className="text-lg mt-8">Included?</p> {/* This should be the included from backend*/}
 
         <h2 className="text-xl font-bold mt-12">Price</h2>
-        <p className="text-center text-lg mt-8">Price?</p> {/* This should be the price*/}
+        <p className="text-lg mt-8">Price?</p> {/* This should be the price*/}
 
         <h2 className="text-xl font-bold mt-12">Cancellation Protection</h2>
-        <p className="text-center text-lg mt-8">Cancellation Protection?</p> {/* This should be the cancellation protection*/}
+        <p className="text-lg mt-8">Cancellation Protection?</p> {/* This should be the cancellation protection*/}
 
-        <h2 className="text-xl font-bold mt-12">Total Cost</h2>
-        <p className="text-center text-lg mt-8">Summa?</p> {/* This should be the total amount*/}
+        <h2 className="text-xl font-bold mt-12">Total Cost:</h2>
+        <p className="text-lg mt-5">Summa?</p> {/* This should be the total amount*/}
 
         <hr className="w-full bg-black" />
 
@@ -56,7 +57,7 @@ import { useState } from "react";
 
         <div>
             <label htmlFor="email">Email</label>
-            <input type="email" id="email" name="email" required />
+            <input type="email" id="email" name="email" required className="bg-grey-100"/>
              </div>
             <div>
              <label htmlFor="phone">Phone Number</label>
@@ -80,7 +81,7 @@ import { useState } from "react";
                             <div className="flex gap-4 mt-2">
                              <div>
                                 <label htmlFor="credit-card">
-                                <img src="/credit-card.png" alt="Credit Card" />
+                                <img src="/imgs/card.png" alt="Credit Card" />
                                 <input
                                 type="radio"
                                  id="credit-card"
@@ -93,7 +94,7 @@ import { useState } from "react";
                     </div>
                          <div>
                             <label htmlFor="klarna">
-                            <img src="/klarna.png" alt="Klarna" />
+                            <img src="/imgs/klarna.png" alt="Klarna" />
                             <input
                             type="radio"
                             id="klarna"
@@ -105,7 +106,7 @@ import { useState } from "react";
                             </label>
                             <div>
                              <label htmlFor="paypal">
-                            <img src="/paypal.png" alt="PayPal" />
+                            <img src="/imgs/paypal.png" alt="PayPal" />
                             <input
                                 type="radio"
                                 id="paypal"
@@ -118,7 +119,7 @@ import { useState } from "react";
                                 </div>
                                 <div>
                                 <label htmlFor="amex">
-                                <img src="/amex.png" alt="Amex" />
+                                <img src="/imgs/amex.png" alt="Amex" />
                                  <input
                                     type="radio"
                                     id="amex"
@@ -132,12 +133,14 @@ import { useState } from "react";
                                 </div>
                                 </div>
                              </div>
-
-                                            <button type="submit" className="bg-custom-yellow text-black py-2 px-4 rounded-lg mt-6 font-lora">
+<button type="submit" className="bg-custom-yellow text-black py-2 px-4 rounded-lg mt-6 font-lora">
                                                 Confirm Booking
                                             </button>
+                                           
                                         </form>
+                                         
                                     </div>
+                                    
                                 </div>
                             </div>
                         );

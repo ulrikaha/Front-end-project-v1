@@ -25,6 +25,23 @@ const config: Config = {
       borderWidth: {
         '12': '12px',
     },
+    height: {
+      '1/2': '50%',
+      '1/3': '33.333333%',
+      '1/4': '25%',
+      // add custom responsive heights here
+    },
+    maxWidth: {
+      '1/2': '50%',
+      '1/3': '33.333333%',
+      '1/4': '25%',
+      // add custom responsive max-widths here
+    },
+    // Add more custom breakpoints if needed
+    screens: {
+      '2xl': '1536px',
+      // You can add more custom breakpoints here
+    },
   },
 },
   plugins: [],
