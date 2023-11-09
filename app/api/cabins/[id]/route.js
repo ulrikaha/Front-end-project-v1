@@ -6,8 +6,6 @@ export async function GET(req, {params} ) {
   console.log("hej0");
   console.log(params, "hej1");
 
-  
-
   const { id } = params;
   
   if (!id) {
@@ -17,7 +15,17 @@ export async function GET(req, {params} ) {
   try {
     await connectMongoDB();
 
-    const cabin = await Package.find({ cabinId: id }); 
+    const cabin = await Package.findOne({ cabinId: id }); 
+    console.log(cabin); // Add a console.log statement here
+
+    if (!cabin) {
+      return NextResponse.json({
+        status: 404,
+        data: "Cabin not found",
+      });
+    }
+    
+    // Return the cabin object directly
     return NextResponse.json({
       status: 200,
       data: cabin,

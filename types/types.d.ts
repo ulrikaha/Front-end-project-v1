@@ -7,12 +7,8 @@ type Package = {
     included: string[],
     info: string[],
     rating: number,
-    cabinId: number, 
+    cabinId: string, 
   }
-
-
-
-
 
   type Booking = {
     package: Package;
