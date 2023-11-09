@@ -3,6 +3,7 @@ import { SearchProvider } from '../context/SearchContext'
 import type { Metadata } from 'next'
 import './globals.css'
 import Footer from '@/components/Footer'
+import NavbarGreen from '@/components/NavbarGreen'
 
 
 
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body>
         <AuthProvider>
         <SearchProvider>
+          <NavbarGreen />
             {children}
             <Footer />
             </SearchProvider>

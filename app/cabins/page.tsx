@@ -1,7 +1,7 @@
 
 'use client';
 
-import NavbarGreen from '@/components/NavbarGreen';
+
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react';
 import  CabinCard from '@/components/CabinCard';
@@ -37,7 +37,7 @@ export default function CabinsPage() {
 
   return (
     <>
-      <NavbarGreen />
+     
       <div className='flex flex-wrap justify-center mt-10'>
           
       {data && data.data && Array.isArray(data.data) && data.data.map((selectedPackage: any, _id: string) => (

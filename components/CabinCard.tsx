@@ -3,6 +3,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarRegular, faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
+import Link from 'next/link';
 
 
 
@@ -16,6 +17,7 @@ type PackageCardProps = {
     info: string;
     rating: number;
     category: string;
+    cabinId: string;
 };
   //handleSearchClick: () => void;
 }
@@ -67,13 +69,15 @@ export default function CabinCard({selectedPackage }: PackageCardProps) {
                         </div>
                     </div>
                     
-                    <div className="flex flex-end justify-end"> {/* This div wraps the button and takes the full width */}
+                    <div className="flex flex-end justify-end"> 
+                    <Link href={`/cabins/${selectedPackage.cabinId}`} passHref>
                     <button
                     className="text-xl p-2 px-4 rounded-lg font-custom text-black bg-custom-yellow"
                     // onClick={handleSearchClick}
                         >
                     View deal
                     </button>
+                    </Link>
                         </div>
                     </div>
 
