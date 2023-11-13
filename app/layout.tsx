@@ -1,5 +1,6 @@
 import { AuthProvider } from './Providers'
 import { SearchProvider } from '../context/SearchContext'
+import { BookingDetailsContextProvider } from '@/context/BookingDetailsContext'
 import type { Metadata } from 'next'
 import './globals.css'
 import Footer from '@/components/Footer'
@@ -23,9 +24,11 @@ export default function RootLayout({
       <body>
         <AuthProvider>
         <SearchProvider>
+          <BookingDetailsContextProvider>
           <NavbarGreen />
             {children}
             <Footer />
+          </BookingDetailsContextProvider>
             </SearchProvider>
         </AuthProvider>
       </body>

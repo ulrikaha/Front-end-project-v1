@@ -44,18 +44,20 @@ export default function CabinCard({selectedPackage }: PackageCardProps) {
                     <div className="flex">
                         <h3 className="text-lg font-bold font-lora">{selectedPackage.name}</h3>
                     </div>
-                    <div className="w-[30%] font-lora text-lg font-bold border rounded-lg shadow-lg text-center">{selectedPackage.price} 
-                    <span className="font-lora font-bold mr-1 ml-1">kr</span>
-                    <span className="font-lora font-normal mr-1">per night</span></div>
+                    <div className="w-[30%] font-lora text-lg font-bold border rounded-lg shadow-lg text-center">
+                        {selectedPackage.price} 
+                        <span className="font-lora font-bold mr-1 ml-1">kr</span>
+                        <span className="font-lora font-normal mr-1">per night</span>
+                    </div>
                     <br />
 
                     <div className="absolute top-0 right-3 p-2 text-3xl">
-                    <FontAwesomeIcon icon={faHeartRegular} className="w-6 h-6" />
+                        <FontAwesomeIcon icon={faHeartRegular} className="w-6 h-6" />
                     </div>
-                   
+
                     <div>{selectedPackage.cabinName}</div>
                     <br />
-                    <div className="mb-4">{selectedPackage.info.join( ', ')}</div>
+                    <div className="mb-4">{Array.isArray(selectedPackage.info) ? selectedPackage.info.join(', ') : selectedPackage.info}</div>
 
                         
                     <div className="flex">

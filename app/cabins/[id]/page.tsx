@@ -74,7 +74,7 @@ export default function CabinPage({ params }: { params: { id: string } }) {
             <div className="absolute top-5 right-0 w-[30%] flex items-center justify-center text-center font-lora text-lg font-bold border rounded-xl shadow-lg bg-white mt-3 mr-3">
               {cabin.category}
             </div>
-            <Reserve />
+            <Reserve  selectedPackage={cabin} /> 
             <Facilities />
             <div className="p-4">
             <div className=" <div className='flex flex-wrap justify-around items-start w-11/12 mx-auto mt-12 bg-grey-100 p-4 border rounded shadow-lg font-lora'>">
