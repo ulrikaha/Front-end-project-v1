@@ -4,6 +4,7 @@ import { useBookingContext } from "@/context/BookingConfirmContext";
 
 const PaymentConfirmation = () => {
     const { bookingInfo } = useBookingContext();
+    const { bookingReference } = bookingInfo;
 
      // Access total price and user email from the context
   const { totalPrice, email } = bookingInfo;
@@ -19,7 +20,7 @@ const PaymentConfirmation = () => {
                 <p className="text-center text-lg mt-8">{totalPrice}</p>
                 <p className="text-center text-lg font-bold"></p> 
                 <p className="text-center text-lg mt-8">Your booking reference</p>
-                <p className="text-center text-lg font-bold">XXXXXX?</p>
+                <p className="text-center text-lg font-bold">{bookingReference}</p>
                 <p className="text-center text-lg mt-8">A receipt for this transaction has been sent to</p>
                 <p className="text-center text-lg font-bold">{email}</p> 
             </div>

@@ -1,10 +1,11 @@
 'use client';
 
-import { createContext, useContext, ReactNode, useState } from 'react';
+import React, { createContext, useContext, ReactNode, useState } from 'react';
 
 interface BookingInfo {
   totalPrice: number;
   email: string;
+  bookingReference: string;
 }
 
 interface BookingContextType {
@@ -22,6 +23,7 @@ export const BookingProvider: React.FC<BookingProviderProps> = ({ children }) =>
   const [bookingInfo, setBookingInfo] = useState<BookingInfo>({
     totalPrice: 0,
     email: '',
+    bookingReference: generateBookingReference(),
   });
 
   const updateBookingInfo = (newBookingInfo: Partial<BookingInfo>) => {
@@ -39,4 +41,15 @@ export const useBookingContext = (): BookingContextType => {
     throw new Error('useBookingContext must be used within a BookingProvider');
   }
   return context;
+};
+
+// Function to generate a random booking reference
+const generateBookingReference = (): string => {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  const length = 8;
+  let bookingReference = '';
+  for (let i = 0; i < length; i++) {
+    bookingReference += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return bookingReference;
 };

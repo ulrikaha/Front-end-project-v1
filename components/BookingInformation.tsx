@@ -3,7 +3,7 @@
 import { useSearchContext } from "@/context/SearchContext";
 import { useBookingDetailsContext } from "@/context/BookingDetailsContext"; 
 import { useBookingContext } from "@/context/BookingConfirmContext";
-import { useState } from "react";
+import { useState , useEffect } from "react";
 
     function BookingInformation() {
     const { startDate, endDate, selectedPackage } = useSearchContext();
@@ -12,14 +12,28 @@ import { useState } from "react";
     const [isCancellationProtectionChecked, setIsCancellationProtectionChecked] = useState(false);
 
     const { updateBookingInfo } = useBookingContext();
-   
-const calculateTotalCost = () => {
-    const basePrice = bookingDetails.price;
-    const cancellationProtectionCost = isCancellationProtectionChecked ? 500 : 0;
-    const totalPrice = basePrice + cancellationProtectionCost;
-    updateBookingInfo({ totalPrice });
-    return totalPrice;
-}
+
+
+    useEffect(() => {
+        const totalCost = calculateTotalCost();
+        updateBookingInfo({ totalPrice: totalCost });
+      }, [isCancellationProtectionChecked, bookingDetails.price]);
+      
+    
+      const calculateTotalCost = () => {
+        const basePrice = bookingDetails.price;
+        const cancellationProtectionCost = isCancellationProtectionChecked ? 500 : 0;
+        return basePrice + cancellationProtectionCost;
+      };
+    
+
+      const handleCancellationProtectionChange = () => {
+        setIsCancellationProtectionChecked((prevValue) => !prevValue);
+       
+      };
+    
+  
+
                        
     
     return (
@@ -45,7 +59,13 @@ const calculateTotalCost = () => {
   
               <h2 className="text-lg font-bold mt-12">Cancellation Protection</h2>
               <p className="text-lg mt-6">500 kr</p>
-              <input type="radio" id="cancel-protection" name="candel-protection" value="cancel-protection" />
+              <input 
+              type="checkbox" 
+              id="cancel-protection" 
+              name="candel-protection" 
+              checked={isCancellationProtectionChecked}
+              onChange={handleCancellationProtectionChange}
+              />
             </div>
   
             <div className="w-1/2 px-4">
@@ -61,8 +81,8 @@ const calculateTotalCost = () => {
               <h2 className="text-lg font-bold mt-12">Price</h2>
               <p className="text-lg mt-6">{bookingDetails.price} Kr</p>
   
-              <h2 className="text-lg font-bold mt-12">Total Cost:</h2>
-              <p className="text-lg mt-6"> Kr</p>
+              <h2 className="text-lg font-bold mt-12">Total Price:</h2>
+              <p className="text-lg mt-6">{calculateTotalCost()}  Kr</p>
             </div>
           </div>
   
