@@ -2,15 +2,24 @@
 
 import { useSearchContext } from "@/context/SearchContext";
 import { useBookingDetailsContext } from "@/context/BookingDetailsContext"; 
+import { useBookingContext } from "@/context/BookingConfirmContext";
 import { useState } from "react";
 
     function BookingInformation() {
     const { startDate, endDate, selectedPackage } = useSearchContext();
     const { bookingDetails } = useBookingDetailsContext()
     const [paymentOption, setPaymentOption] = useState("");
+    const [isCancellationProtectionChecked, setIsCancellationProtectionChecked] = useState(false);
 
+    const { updateBookingInfo } = useBookingContext();
    
-
+const calculateTotalCost = () => {
+    const basePrice = bookingDetails.price;
+    const cancellationProtectionCost = isCancellationProtectionChecked ? 500 : 0;
+    const totalPrice = basePrice + cancellationProtectionCost;
+    updateBookingInfo({ totalPrice });
+    return totalPrice;
+}
                        
     
     return (
@@ -47,13 +56,13 @@ import { useState } from "react";
               <p className="text-lg mt-6">2</p>
   
               <h2 className="text-lg font-bold mt-12">Included</h2>
-              <p className="text-lg mt-6">{bookingDetails.included}</p>
+              <p className="text-lg mt-6">{bookingDetails.included.join(', ')}</p>
   
               <h2 className="text-lg font-bold mt-12">Price</h2>
-              <p className="text-lg mt-6">{ bookingDetails.price}</p>
+              <p className="text-lg mt-6">{bookingDetails.price} Kr</p>
   
               <h2 className="text-lg font-bold mt-12">Total Cost:</h2>
-              <p className="text-lg mt-6">10 000 Kr</p>
+              <p className="text-lg mt-6"> Kr</p>
             </div>
           </div>
   
