@@ -8,31 +8,122 @@ import { useState , useEffect } from "react";
     function BookingInformation() {
     const { startDate, endDate, selectedPackage } = useSearchContext();
     const { bookingDetails } = useBookingDetailsContext()
-    const [paymentOption, setPaymentOption] = useState("");
     const [isCancellationProtectionChecked, setIsCancellationProtectionChecked] = useState(false);
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+        zip: "",
+        city: "",
+        paymentOption: "",
+    });
+
+    const [formErrors, setFormErrors] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+        zip: "",
+        city: "",
+        paymentOption: "",
+    });
+    
 
     const { updateBookingInfo } = useBookingContext();
 
 
+    // UseEffect added so that the booking page updates the total price when the cancellation protection is checked
     useEffect(() => {
         const totalCost = calculateTotalCost();
         updateBookingInfo({ totalPrice: totalCost });
       }, [isCancellationProtectionChecked, bookingDetails.price]);
-      
-    
+
+
+    // Calculate the total cost of the booking
       const calculateTotalCost = () => {
         const basePrice = bookingDetails.price;
         const cancellationProtectionCost = isCancellationProtectionChecked ? 500 : 0;
         return basePrice + cancellationProtectionCost;
       };
     
-
-      const handleCancellationProtectionChange = () => {
+    // Handle the cancellation protection checkbox
+    const handleCancellationProtectionChange = () => {
         setIsCancellationProtectionChecked((prevValue) => !prevValue);
-       
-      };
+    };
+
     
-  
+  // Handle form input changes
+const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
+};
+
+
+  // Handle form submission
+const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    // Reset form errors
+    setFormErrors({
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+        zip: "",
+        city: "",
+        paymentOption: "",
+    });
+
+    const { name, email, phone, address, zip, city, paymentOption } = formData;
+
+    if (!name) {
+        setFormErrors((prevErrors) => ({ ...prevErrors, name: "Please enter your name." }));
+        return;
+    }
+
+    if (!email) {
+        setFormErrors((prevErrors) => ({ ...prevErrors, email: "Please enter your email address." }));
+        return;
+    }
+
+    if (!phone) {
+        setFormErrors((prevErrors) => ({ ...prevErrors, phone: "Please enter your phone number." }));
+        return;
+
+      } else if (!/^\d{10}$/.test(phone)) {
+        setFormErrors((prevErrors) => ({ ...prevErrors, phone: "Please enter a valid phone number." }));
+        return;
+      }
+
+    if (!address) {
+        setFormErrors((prevErrors) => ({ ...prevErrors, address: "Please enter your address." }));
+        return;
+    }
+
+    if (!zip) {
+        setFormErrors((prevErrors) => ({ ...prevErrors, zip: "Please enter your zip code." }));
+        return;
+    }
+
+    if (!city) {
+        setFormErrors((prevErrors) => ({ ...prevErrors, city: "Please enter your city." }));
+        return;
+    }
+
+    if (!document.querySelector('input[name="payment-option"]:checked')) {
+        setFormErrors((prevErrors) => ({ ...prevErrors, paymentOption: "Please select a payment option." }));
+        return;
+      }
+      
+    
+
+    // If validation passes, proceed with form submission
+    // add MongoDB post logic here
+
+    console.log("Form submitted:", formData);
+};
+    
 
                        
     
@@ -88,106 +179,161 @@ import { useState , useEffect } from "react";
   
           <div className="border-t border-black my-4 mt-5 mb-10"></div>
   
-          <form className="flex flex-col gap-3 ml-6 mr-6">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-3 ml-6 mr-6">
             <div className="flex flex-col">
               <label htmlFor="name">Full Name</label>
-              <input type="text" id="name" name="name" required className="bg-gray-100 rounded-md p-2" />
+              <input 
+              type="text" 
+              id="name" 
+              name="name" 
+              required 
+              className={`bg-gray-100 rounded-md p-2 ${formErrors.name && "border-red-500"}`}
+              onChange={handleInputChange}
+              />
+              {formErrors.name && <span className="text-red-500">{formErrors.name}</span>}
             </div>
+        
   
             <div className="flex flex-col">
               <label htmlFor="email">Email</label>
-              <input type="email" id="email" name="email" required className="bg-gray-100 rounded-md p-2" />
-            </div>
+              <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              required 
+              className={`bg-gray-100 rounded-md p-2 ${formErrors.email && "border-red-500"}`}
+              onChange={handleInputChange}
+            />
+            {formErrors.email && <span className="text-red-500">{formErrors.email}</span>}
+          </div>
   
             <div className="flex flex-col">
               <label htmlFor="phone">Phone Number</label>
-              <input type="tel" id="phone" name="phone" required className="bg-gray-100 rounded-md p-2" />
+              <input 
+              type="tel" 
+              id="phone" 
+              name="phone" 
+              required 
+              className={`bg-gray-100 rounded-md p-2 ${formErrors.phone && "border-red-500"}`}
+              onChange={handleInputChange}
+              />
+              {formErrors.phone && <span className="text-red-500">{formErrors.phone}</span>}
             </div>
   
             <div className="flex flex-col">
               <label htmlFor="address">Address</label>
-              <input type="text" id="address" name="address" required className="bg-gray-100 rounded-md p-2" />
+              <input 
+              type="text" 
+              id="address" 
+              name="address" 
+              required 
+              className={`bg-gray-100 rounded-md p-2 ${formErrors.address && "border-red-500"}`}
+              onChange={handleInputChange}
+              />
+              {formErrors.address && <span className="text-red-500">{formErrors.address}</span>}
             </div>
 
 
             <div className="flex flex-col">
               <label htmlFor="zip">Zip Code</label>
-              <input type="text" id="zip" name="zip" required className="bg-gray-100 rounded-md p-2" />
+              <input 
+              type="text" 
+              id="zip" 
+              name="zip" 
+              required 
+              className={`bg-gray-100 rounded-md p-2 ${formErrors.zip && "border-red-500"}`}
+              onChange={handleInputChange}
+              />
+              {formErrors.zip && <span className="text-red-500">{formErrors.zip}</span>}
             </div>
 
 
   
             <div className="flex flex-col">
               <label htmlFor="city">City</label>
-              <input type="text" id="city" name="city" required className="bg-gray-100 rounded-md p-2" />
+              <input 
+              type="text" 
+              id="city" 
+              name="city" 
+              required 
+              className={`bg-gray-100 rounded-md p-2 ${formErrors.city && "border-red-500"}`}
+              onChange={handleInputChange}
+              />
+              {formErrors.city && <span className="text-red-500">{formErrors.city}</span>}
             </div>
   
          
   
-           
-                <div className="flex flex-col mt-6">
-                    <label>Payment Options</label>
-                    <div className="flex gap-4 mt-2">
-                    <div className="flex items-center">
-                        <label htmlFor="credit-card">
-                            <img src="/imgs/card.png" alt="Credit Card" />
-                            <input
-                                type="radio"
-                                id="credit-card"
-                                name="payment-option"
-                                value="credit-card"
-                                required
-                            />
-                        </label>
-                    </div>
+            <div className="flex flex-col mt-6">
+  <label>Payment Options</label>
+  <div className="flex gap-4 mt-2">
+    <div className="flex items-center">
+      <input
+        type="radio"
+        id="credit-card"
+        name="payment-option"
+        value="credit-card"
+        required
+        onChange={handleInputChange}
+      />
+      <label htmlFor="credit-card">
+        <img src="/imgs/card.png" alt="Credit Card" />
+      </label>
+    </div>
 
-                    <div className="flex items-center">
-                        <label htmlFor="klarna">
-                            <img src="/imgs/klarna.png" alt="Klarna" />
-                            <input
-                                type="radio"
-                                id="klarna"
-                                name="payment-option"
-                                value="klarna"
-                                required
-                                />
-                        </label>
-                    </div>
-                
-        
-               <div className="flex items-center">
-                  <label htmlFor="paypal">
-                    <img src="/imgs/paypal.png" alt="PayPal" />
-                    <input
-                      type="radio"
-                      id="paypal"
-                      name="payment-option"
-                      value="paypal"
-                      required
-                    />
-                  </label>
-                </div>
-  
-                <div className="flex items-center">
-                  <label htmlFor="amex">
-                    <img src="/imgs/amex.png" alt="Amex" />
-                    <input
-                      type="radio"
-                      id="amex"
-                      name="payment-option"
-                      value="amex"
-                      required
-                     />
-                  </label>
-                </div>
-              </div>
-            </div>
+    <div className="flex items-center">
+      <input
+        type="radio"
+        id="klarna"
+        name="payment-option"
+        value="klarna"
+        required
+        onChange={handleInputChange}
+      />
+      <label htmlFor="klarna">
+        <img src="/imgs/klarna.png" alt="Klarna" />
+      </label>
+    </div>
+
+    <div className="flex items-center">
+      <input
+        type="radio"
+        id="paypal"
+        name="payment-option"
+        value="paypal"
+        required
+        onChange={handleInputChange}
+      />
+      <label htmlFor="paypal">
+        <img src="/imgs/paypal.png" alt="PayPal" />
+      </label>
+    </div>
+
+    <div className="flex items-center">
+      <input
+        type="radio"
+        id="amex"
+        name="payment-option"
+        value="amex"
+        required
+        onChange={handleInputChange}
+      />
+      <label htmlFor="amex">
+        <img src="/imgs/amex.png" alt="Amex" />
+      </label>
+    </div>
+  </div>
+  {formErrors.paymentOption && <span className="text-red-500">{formErrors.paymentOption}</span>}
+</div>
+
+
            
   
             <div className="flex justify-center mt-6 mb-5">
-              <button type="submit" className="bg-custom-yellow font-bold text-black py-3 px-6 rounded-xl mt-6 font-lora mx-auto">
-                Confirm Booking
-              </button>
+                <button type="submit" className="bg-custom-yellow font-bold text-black py-3 px-6 rounded-xl mt-6 font-lora mx-auto">
+                    Confirm Booking
+                </button>
+              
                 </div>
             </form>
         </div>

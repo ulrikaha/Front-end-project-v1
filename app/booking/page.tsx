@@ -1,3 +1,5 @@
+
+
 import BookingInformation from "@/components/BookingInformation"
 
 function bookingPage() {
