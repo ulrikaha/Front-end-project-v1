@@ -1,13 +1,19 @@
+
+'use client';
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSquareCheck } from "@fortawesome/free-regular-svg-icons";
 import { useBookingContext } from "@/context/BookingConfirmContext";
 
 const PaymentConfirmation = () => {
     const { bookingInfo } = useBookingContext();
+    //console.log('Booking Info:', bookingInfo);
     const { bookingReference } = bookingInfo;
 
-     // Access total price and user email from the context
+     // Access total price and email from the context
   const { totalPrice, email } = bookingInfo;
+
+  
 
     return (
         <div className="grid place-items-center h-screen">
@@ -17,12 +23,12 @@ const PaymentConfirmation = () => {
             </div>  
             <div className="mt-6 font-lora pt-7">
                 <h2 className="text-center text-2xl font-bold mt-12">Thank you for your payment!</h2>
-                <p className="text-center text-lg mt-8">{totalPrice}</p>
-                <p className="text-center text-lg font-bold"></p> 
-                <p className="text-center text-lg mt-8">Your booking reference</p>
+                <p className="text-center text-lg mt-8 mb-2">Total payment amount </p>
+                <p className="text-center text-lg font-bold">{totalPrice} SEK</p> 
+                <p className="text-center text-lg mt-8 mb-2">Your booking reference:</p>
                 <p className="text-center text-lg font-bold">{bookingReference}</p>
-                <p className="text-center text-lg mt-8">A receipt for this transaction has been sent to</p>
-                <p className="text-center text-lg font-bold">{email}</p> 
+                <p className="text-center text-lg mt-8 mb-2">A receipt and booking reference for this transaction has been sent to this email:</p>
+                <p className="text-center text-lg font-bold">{email}</p> {/** email from context not working!!!! */}
             </div>
         </div>
         </div>

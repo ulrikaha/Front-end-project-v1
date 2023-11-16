@@ -1,29 +1,35 @@
 const bookingSchema = new Schema(
     {
-        user: {
-            type: Schema.Types.ObjectId,
-            ref: "User",
+        checkIn: {
+            type: Date,
+            required: true,
+        },
+        checkOut: {
+            type: Date,
+            required: true,
         },
         cabinName: {
             type: Schema.Types.ObjectId,
             ref: "Package",
         },
-        location: {
-            type: String,
-            default: "Åre",
-        },
         guests: {
             type: Number,
             default: 2,
         },
-        package: {
-            type: Schema.Types.ObjectId,
-            ref: "Package",
+        location: {
+            type: String,
+            default: "Åre",
         },
         included: {
             type: Schema.Types.ObjectId,
             ref: "Package",
         },
+
+        package: {
+            type: Schema.Types.ObjectId,
+            ref: "Package",
+        },
+       
         price: {
             type: Schema.Types.ObjectId,
             ref: "Package",
@@ -36,7 +42,7 @@ const bookingSchema = new Schema(
             type: Number,
             required: true,
         },
-        fullName: {
+        name: {
             type: String,
             required: true,
         },
@@ -44,19 +50,19 @@ const bookingSchema = new Schema(
             type: String,
             required: true,
         },
-        phoneNumber: {
+        phone: {
             type: String,
             required: true,
         },
-        streetAdress: {
+        adress: {
+            type: String,
+            required: true,
+        },
+        zipCode: {
             type: String,
             required: true,
         },
         city: {
-            type: String,
-            required: true,
-        },
-        state: {
             type: String,
             required: true,
         },
@@ -65,11 +71,10 @@ const bookingSchema = new Schema(
             enum: ["card", "klarna", "paypal", "american-express"],
             required: true,
         },
-        status: {
-            type: String,
-            enum: ["active", "cancelled"],
-            default: "active",
-        },
+      
     },
     { timestamps: true }
 );
+
+const Booking = models.Booking || mongoose.model("Booking", bookingSchema);
+export default Booking;

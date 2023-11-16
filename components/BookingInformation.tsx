@@ -5,11 +5,26 @@ import { useBookingDetailsContext } from "@/context/BookingDetailsContext";
 import { useBookingContext } from "@/context/BookingConfirmContext";
 import { useState , useEffect } from "react";
 
-    function BookingInformation() {
+
+    interface BookingInformationProps {
+        onSubmit: () => void;
+    }
+
+    function BookingInformation({ onSubmit }: BookingInformationProps) {
     const { startDate, endDate, selectedPackage } = useSearchContext();
     const { bookingDetails } = useBookingDetailsContext()
     const [isCancellationProtectionChecked, setIsCancellationProtectionChecked] = useState(false);
     const [formData, setFormData] = useState({
+        checkInDate: "",
+        checkOutDate: "",
+        guests: 0,
+        included: [],
+        price: 0,
+        totalPrice: 0,
+        cabinName: "",
+        location: "",
+        selectedPackage: "",
+        cancellationProtection: false,
         name: "",
         email: "",
         phone: "",
@@ -61,8 +76,9 @@ const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
 
   // Handle form submission
-const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+   
 
     // Reset form errors
     setFormErrors({
@@ -75,7 +91,9 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         paymentOption: "",
     });
 
-    const { name, email, phone, address, zip, city, paymentOption } = formData;
+    
+
+    const {  name, email, phone, address, zip, city, paymentOption } = formData;
 
     if (!name) {
         setFormErrors((prevErrors) => ({ ...prevErrors, name: "Please enter your name." }));
@@ -115,14 +133,12 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         setFormErrors((prevErrors) => ({ ...prevErrors, paymentOption: "Please select a payment option." }));
         return;
       }
-      
     
-
-    // If validation passes, proceed with form submission
-    // add MongoDB post logic here
-
-    console.log("Form submitted:", formData);
+      console.log(formData) 
+  // Call the onSubmit function passed from the parent component
+  onSubmit(formData);
 };
+
     
 
                        
@@ -137,7 +153,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
           <div className="flex">
             <div className="w-1/2 px-4">
               <h2 className="text-lg font-bold mt-12">Check-in Date</h2>
-              <p className="text-lg mt-6">{startDate.toLocaleDateString()}</p>
+            <p className="text-lg mt-6">{startDate.toLocaleDateString('en-US', { month: 'numeric', day: 'numeric', year: 'numeric' })}</p>
   
               <h2 className="text-lg font-bold mt-12">Chosen Cabin</h2>
               <p className="text-lg mt-6">{bookingDetails.cabinName}</p>
@@ -161,7 +177,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
   
             <div className="w-1/2 px-4">
               <h2 className="text-lg font-bold mt-12">Check-out Date</h2>
-              <p className="text-lg mt-6">{endDate.toLocaleDateString()}</p>
+              <p className="text-lg mt-6">{endDate.toLocaleDateString('en-US' , { month: 'numeric' , day: 'numeric' , year: 'numeric' })}</p>
   
               <h2 className="text-lg font-bold mt-12">Guests</h2>
               <p className="text-lg mt-6">2</p>
@@ -180,12 +196,27 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
           <div className="border-t border-black my-4 mt-5 mb-10"></div>
   
           <form onSubmit={handleSubmit} className="flex flex-col gap-3 ml-6 mr-6">
+
+        {/* Hidden input fields for additional data */}
+    <input type="hidden" name="checkInDate" value={formData.checkInDate} />
+    <input type="hidden" name="checkOutDate" value={formData.checkOutDate} />
+    <input type="hidden" name="guests" value={formData.guests} />
+    <input type="hidden" name="included" value={formData.included} />
+    <input type="hidden" name="price" value={formData.price} />
+    <input type="hidden" name="totalPrice" value={formData.totalPrice} />
+    <input type="hidden" name="cabinName" value={formData.cabinName} />
+    <input type="hidden" name="location" value={formData.location} />
+    <input type="hidden" name="selectedPackage" value={formData.selectedPackage} />
+    <input type="hidden" name="cancellationProtection" value={formData.cancellationProtection.toString()} />
+
+
             <div className="flex flex-col">
               <label htmlFor="name">Full Name</label>
               <input 
               type="text" 
               id="name" 
               name="name" 
+              value={formData.name} 
               required 
               className={`bg-gray-100 rounded-md p-2 ${formErrors.name && "border-red-500"}`}
               onChange={handleInputChange}
@@ -200,6 +231,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
               type="email" 
               id="email" 
               name="email" 
+              value={formData.email} 
               required 
               className={`bg-gray-100 rounded-md p-2 ${formErrors.email && "border-red-500"}`}
               onChange={handleInputChange}
@@ -213,6 +245,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
               type="tel" 
               id="phone" 
               name="phone" 
+              value={formData.phone} 
               required 
               className={`bg-gray-100 rounded-md p-2 ${formErrors.phone && "border-red-500"}`}
               onChange={handleInputChange}
@@ -226,6 +259,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
               type="text" 
               id="address" 
               name="address" 
+                value={formData.address}
               required 
               className={`bg-gray-100 rounded-md p-2 ${formErrors.address && "border-red-500"}`}
               onChange={handleInputChange}
@@ -240,6 +274,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
               type="text" 
               id="zip" 
               name="zip" 
+              value={formData.zip}
               required 
               className={`bg-gray-100 rounded-md p-2 ${formErrors.zip && "border-red-500"}`}
               onChange={handleInputChange}
@@ -255,6 +290,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
               type="text" 
               id="city" 
               name="city" 
+              value={formData.city}
               required 
               className={`bg-gray-100 rounded-md p-2 ${formErrors.city && "border-red-500"}`}
               onChange={handleInputChange}
@@ -330,9 +366,13 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
            
   
             <div className="flex justify-center mt-6 mb-5">
-                <button type="submit" className="bg-custom-yellow font-bold text-black py-3 px-6 rounded-xl mt-6 font-lora mx-auto">
+                
+                <button 
+                type="submit" 
+                className="bg-custom-yellow font-bold text-black py-3 px-6 rounded-xl mt-6 font-lora mx-auto">
                     Confirm Booking
                 </button>
+               
               
                 </div>
             </form>
