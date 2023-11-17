@@ -1,19 +1,22 @@
+import mongoose, { Schema , models } from "mongoose";
+
+
 const bookingSchema = new Schema(
     {
-        checkIn: {
-            type: Date,
+        checkInDate: {
+            type: Schema.Types.Date,
             required: true,
         },
-        checkOut: {
-            type: Date,
+        checkOutDate: {
+            type: Schema.Types.Date,
             required: true,
         },
         cabinName: {
-            type: Schema.Types.ObjectId,
-            ref: "Package",
+            type: Schema.Types.String,
+            required: true
         },
         guests: {
-            type: Number,
+            type: Schema.Types.Number,
             default: 2,
         },
         location: {
@@ -21,8 +24,8 @@ const bookingSchema = new Schema(
             default: "Åre",
         },
         included: {
-            type: Schema.Types.ObjectId,
-            ref: "Package",
+            type: [Schema.Types.String],
+            default: []
         },
 
         package: {
@@ -31,44 +34,44 @@ const bookingSchema = new Schema(
         },
        
         price: {
-            type: Schema.Types.ObjectId,
-            ref: "Package",
+            type: Schema.Types.Number,
+            required: true
         },
         cancellationProtection: {
-            type: Boolean,
+            type: Schema.Types.Boolean,
             default: false,
         },
         totalPrice: {
-            type: Number,
+            type: Schema.Types.Number,
             required: true,
         },
         name: {
-            type: String,
+            type: Schema.Types.String,
             required: true,
         },
         email: {
-            type: String,
+            type: Schema.Types.String,
             required: true,
         },
         phone: {
-            type: String,
+            type: Schema.Types.String,
             required: true,
         },
-        adress: {
-            type: String,
+        address: {
+            type: Schema.Types.String,
             required: true,
         },
         zipCode: {
-            type: String,
+            type: Schema.Types.String,
             required: true,
         },
         city: {
-            type: String,
+            type: Schema.Types.String,
             required: true,
         },
-        paymentOption: {
-            type: String,
-            enum: ["card", "klarna", "paypal", "american-express"],
+        paymentOptions: {
+            type: Schema.Types.String,
+            enum: ["credit-card", "klarna", "paypal", "amex"],
             required: true,
         },
       

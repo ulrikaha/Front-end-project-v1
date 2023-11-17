@@ -14,24 +14,25 @@ import { useState , useEffect } from "react";
     const { startDate, endDate, selectedPackage } = useSearchContext();
     const { bookingDetails } = useBookingDetailsContext()
     const [isCancellationProtectionChecked, setIsCancellationProtectionChecked] = useState(false);
+
     const [formData, setFormData] = useState({
-        checkInDate: "",
-        checkOutDate: "",
-        guests: 0,
-        included: [],
-        price: 0,
+        checkInDate: startDate,
+        checkOutDate: endDate,
+        guests: 2,
+        included: bookingDetails.included,
+        price: bookingDetails.price,
         totalPrice: 0,
-        cabinName: "",
-        location: "",
-        selectedPackage: "",
-        cancellationProtection: false,
+        cabinName: bookingDetails.cabinName,
+        location: "Åre",
+        selectedPackage: selectedPackage,
+        cancellationProtection: isCancellationProtectionChecked,
         name: "",
         email: "",
         phone: "",
         address: "",
-        zip: "",
+        zipCode: "",
         city: "",
-        paymentOption: "",
+        paymentOptions: "",
     });
 
     const [formErrors, setFormErrors] = useState({
@@ -39,9 +40,9 @@ import { useState , useEffect } from "react";
         email: "",
         phone: "",
         address: "",
-        zip: "",
+        zipCode: "",
         city: "",
-        paymentOption: "",
+        paymentOptions: "",
     });
     
 
@@ -70,14 +71,22 @@ import { useState , useEffect } from "react";
     
   // Handle form input changes
 const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    const { name, value, type , checked } = e.target;
+    const inputValue = type === "radio" ? value : type === "checkbox" ? checked : value;
+
+    setFormData((prevData) => ({ 
+        ...prevData, 
+        [name]: inputValue, 
+    }));
 };
 
 
   // Handle form submission
 const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    // Save email value in bookingContext
+    updateBookingInfo({ email: formData.email });
    
 
     // Reset form errors
@@ -86,14 +95,14 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         email: "",
         phone: "",
         address: "",
-        zip: "",
+        zipCode: "",
         city: "",
-        paymentOption: "",
+        paymentOptions: "",
     });
 
     
 
-    const {  name, email, phone, address, zip, city, paymentOption } = formData;
+    const {  name, email, phone, address, zipCode, city, paymentOptions } = formData;
 
     if (!name) {
         setFormErrors((prevErrors) => ({ ...prevErrors, name: "Please enter your name." }));
@@ -119,8 +128,8 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         return;
     }
 
-    if (!zip) {
-        setFormErrors((prevErrors) => ({ ...prevErrors, zip: "Please enter your zip code." }));
+    if (!zipCode) {
+        setFormErrors((prevErrors) => ({ ...prevErrors, zipCode: "Please enter your zip code." }));
         return;
     }
 
@@ -129,14 +138,22 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         return;
     }
 
-    if (!document.querySelector('input[name="payment-option"]:checked')) {
-        setFormErrors((prevErrors) => ({ ...prevErrors, paymentOption: "Please select a payment option." }));
+    if (!document.querySelector('input[name="paymentOptions"]:checked')) {
+        setFormErrors((prevErrors) => ({ ...prevErrors, paymentOptions: "Please select a payment option." }));
         return;
       }
     
+      // Add the total price to the form data
+      const totalCost = calculateTotalCost();
+      const updatedFormData = {
+        ...formData,
+        totalPrice: totalCost,
+      };
+    
+
       console.log(formData) 
   // Call the onSubmit function passed from the parent component
-  onSubmit(formData);
+  onSubmit(updatedFormData);
 };
 
     
@@ -198,8 +215,8 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
           <form onSubmit={handleSubmit} className="flex flex-col gap-3 ml-6 mr-6">
 
         {/* Hidden input fields for additional data */}
-    <input type="hidden" name="checkInDate" value={formData.checkInDate} />
-    <input type="hidden" name="checkOutDate" value={formData.checkOutDate} />
+    <input type="hidden" name="checkInDate" value={formData.checkInDate.toISOString().substring(0, 10)} />
+    <input type="hidden" name="checkOutDate" value={formData.checkOutDate.toISOString().substring(0, 10)} />
     <input type="hidden" name="guests" value={formData.guests} />
     <input type="hidden" name="included" value={formData.included} />
     <input type="hidden" name="price" value={formData.price} />
@@ -272,14 +289,14 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
               <label htmlFor="zip">Zip Code</label>
               <input 
               type="text" 
-              id="zip" 
-              name="zip" 
-              value={formData.zip}
+              id="zipCode" 
+              name="zipCode" 
+              value={formData.zipCode}
               required 
-              className={`bg-gray-100 rounded-md p-2 ${formErrors.zip && "border-red-500"}`}
+              className={`bg-gray-100 rounded-md p-2 ${formErrors.zipCode && "border-red-500"}`}
               onChange={handleInputChange}
               />
-              {formErrors.zip && <span className="text-red-500">{formErrors.zip}</span>}
+              {formErrors.zipCode && <span className="text-red-500">{formErrors.zipCode}</span>}
             </div>
 
 
@@ -307,7 +324,7 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
       <input
         type="radio"
         id="credit-card"
-        name="payment-option"
+        name="paymentOptions"
         value="credit-card"
         required
         onChange={handleInputChange}
@@ -321,7 +338,7 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
       <input
         type="radio"
         id="klarna"
-        name="payment-option"
+        name="paymentOptions"
         value="klarna"
         required
         onChange={handleInputChange}
@@ -335,7 +352,7 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
       <input
         type="radio"
         id="paypal"
-        name="payment-option"
+        name="paymentOptions"
         value="paypal"
         required
         onChange={handleInputChange}
@@ -349,7 +366,7 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
       <input
         type="radio"
         id="amex"
-        name="payment-option"
+        name="paymentOptions"
         value="amex"
         required
         onChange={handleInputChange}
@@ -359,7 +376,7 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
       </label>
     </div>
   </div>
-  {formErrors.paymentOption && <span className="text-red-500">{formErrors.paymentOption}</span>}
+  {formErrors.paymentOptions && <span className="text-red-500">{formErrors.paymentOptions}</span>}
 </div>
 
 

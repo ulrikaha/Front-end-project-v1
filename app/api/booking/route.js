@@ -1,94 +1,37 @@
 import { connectMongoDB } from "@/lib/mongodb";
+import Booking from "@/models/Booking";
 import { NextResponse } from "next/server";
 
 export async function POST(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ success: false, error: "Method Not Allowed" });
-  }
-
-  try {
-    const db  = await connectMongoDB();
-    const collection = db.collection("bookings");
-
-    const {
-      checkIn,
-      checkOut,
-      cabinName,
-      guests,
-      location,
-      included,
-      selectedPackage,
-      price,
-      cancellationProtection,
-      totalPrice,
-      name,
-      email,
-      phone,
-      address,
-      zipCode,
-      city,
-      paymentOptions,
-    } = req.body;
-
-    console.log("Console for Received booking data:", req.body);
-
-    if (
-      !checkIn ||
-      !checkOut ||
-      !cabinName ||
-      !guests ||
-      !location ||
-      !included ||
-      !selectedPackage ||
-      !price ||
-      !cancellationProtection ||
-      !totalPrice ||
-      !name ||
-      !email ||
-      !phone ||
-      !address ||
-      !zipCode ||
-      !city ||
-      !paymentOptions
-    ) {
-      if (res) {
-        return NextResponse.json({
-          status: 400,
-          data: "Invalid data received. Please check your input.",
-        });
-      } else {
-        throw new Error("Invalid data. Please check your input.");
-      }
+    if (req.method !== "POST") {
+        return res.status(405).json({ success: false, error: "Method Not Allowed" });
     }
 
-    // Insert the booking data into the MongoDB collection
-    const result = await collection.insertOne({
-      checkIn,
-      checkOut,
-      cabinName,
-      guests,
-      location,
-      included,
-      selectedPackage,
-      price,
-      cancellationProtection,
-      totalPrice,
-      name,
-      email,
-      phone,
-      address,
-      zipCode,
-      city,
-      paymentOptions,
-    });
+    try {
+        const db = await connectMongoDB();
 
-    return res.status(200).json({ success: true });
-  } catch (error) {
-    console.error("Error handling booking:", error);
-    if (res) {
-      return res.status(500).json({ success: false, error: "Internal Server Error" });
-    } else {
-      throw error;
+        const bookingData = await req.json()
+        console.log("BOOKING DATA", bookingData)
+        // Create a new instance of the Booking model with the extracted data
+        const newBooking = new Booking(bookingData);
+
+        // Validate the booking data
+        const validationResult = newBooking.validateSync();
+       // console.log(validationResult.errors);
+        if (validationResult) {
+            return NextResponse.json({ success: false, error: validationResult.errors }, { status: 400 });
+        }
+
+        // Save the new booking instance to the MongoDB collection
+        console.log("SUCCESS in creating booking")
+        await newBooking.save();
+
+        return NextResponse.json({ success: true }, { status: 200 });
+        
+    } catch (error) {
+        console.error("Error handling booking:", error);
+
+        return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });
     }
-  }
 }
+

@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-//add more imgUrls here
+
 
 const packageSchema = new Schema(
     {

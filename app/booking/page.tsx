@@ -30,15 +30,14 @@ import { useRouter } from "next/navigation"
 
 
 const handleConfirmBooking = async (formData: FormData) => {
-  console.log("Form Data:", formData);
   try {
     // Post data to the booking API route
     const response = await fetch("/api/booking", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        contentType: "application/json"
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(formData)
     });
 
     if (!response.ok) {
@@ -46,11 +45,13 @@ const handleConfirmBooking = async (formData: FormData) => {
     }
 
     const data = await response.json();
+  
 
     console.log("Booking data successfully posted:", data);
 
     // Navigate to the confirmation page
     router.push("/confirmation");
+    
   } catch (error) {
     console.error("Error confirming booking:", error);
    
