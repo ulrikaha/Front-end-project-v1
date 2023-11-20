@@ -47,9 +47,9 @@ function Reserve({ selectedPackage }: ReserveProps) {
            
             <h2 className="font-bold mb-2">Price: {selectedPackage.price} Kr</h2>
 
-           <div className="flex place-items-center">
+           <div className="flex justify-center">
             <button
-          className="bg-custom-yellow font-lora font-bold rounded-lg shadow-lg py-2 px-6 mt-6 ml-8"
+          className="bg-custom-yellow font-lora font-bold rounded-lg shadow-lg py-2 px-6 mt-6"
           onClick={handleReserveClick}
         >
           Reserve
