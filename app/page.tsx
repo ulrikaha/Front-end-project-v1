@@ -6,6 +6,7 @@ import AboutUs from "@/components/AboutUs";
 import ActivitiesCarousel from "@/components/ActivitiesCarousell";
 import ReviewCard from "@/components/ReviewCard";
 import Space from "@/components/Space";
+import SectionHeader from "@/components/SectionHeader";
 
 
 
@@ -16,14 +17,15 @@ export default function Home() {
     <div className="home-page">
   <NavbarSearch />
   <SearchBar />
-  <h2 className="text-4xl text-center font-custom text-black mt-12 mb-12">Tailored Retreats for Every Budget</h2>
+  <SectionHeader text="Tailored Retreats for Every Budget" />
   <PackageCardHome />
   <AboutUs />
   <Space />
-  <h2 className="text-4xl text-center font-custom text-black mt-12 mb-12">Explore our activities</h2>
+  <SectionHeader text="Explore our activities" />
   <ActivitiesCarousel />
   <Space />
-  <h2 className="text-4xl text-center font-custom text-black mt-12 mb-12 pb-12">Discover Memorable Retreat Experiences</h2>
+  <SectionHeader text="Discover Memorable Retreat Experiences" />
+  <Space />
     <ReviewCard />
     <Space />
    

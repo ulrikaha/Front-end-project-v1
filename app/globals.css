@@ -3,35 +3,46 @@
 @import 'tailwindcss/utilities';
 
 
-/* For screens with a width of 1440px and wider, show navsearch */
+/* For screens with a width of 1440px and wider, show navsearch only on the home page */
 @media (min-width: 1440px) {
-    .navsearch {
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-image: url('/imgs/cabin-navbar.png');
-      height: 529px;
-    }
+  .home-page .navsearch {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('/imgs/cabin-navbar.png');
+    height: 529px;
+    display: block;
+  }
+
+  .home-page .navgreen {
+    display: none; /* Hide navgreen on the home page on larger screens */
+  }
+
+
+  /* For other pages, show navgreen */
+  body:not(.home-page) .navgreen {
+    background-color: #486349;
+    display: block; /* Show navgreen on other pages on larger screens */
+  }
+}
+
+/* For screens with a width of 1439px and smaller, hide navsearch and show navgreen */
+@media (max-width: 1439px) {
+  .home-page .navsearch {
+    display: none; /* Hide navsearch on the home page on smaller screens */
+  }
+
+  .navgreen {
+    background-color: #486349;
+    display: block; /* Show navgreen on smaller screens */
+  }
+}
+    
   
-    .navgreen {
-      display: none; /* Hide navgreen on larger screens */
-    }
-    }
-  
-  /* For screens with a width of 1439px and smaller, show navgreen */
-  @media (max-width: 1439px) {
-    .navsearch {
-      display: none; /* Hide navsearch on smaller screens */
-    }
-  
-    .navgreen {
-      background-color: #486349;
-      display: block; /* Show navgreen on smaller screens */
-    }
-    .searchbar {
+  .searchbar {
      display: center; /* show searchBar  */
     }
-  }
+  
   
   .custom-margin-left {
     margin-left: 100px; /* For the search button on searchNav */
@@ -40,6 +51,6 @@
 .xl-font-size {
   font-size: 45px;
 }
-  /* .space {
+   .space {
     margin-top: 200px;
-  }*/
+  }
