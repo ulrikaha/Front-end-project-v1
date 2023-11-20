@@ -28,7 +28,7 @@ const PaymentConfirmation = () => {
                 <p className="text-center text-lg mt-8 mb-2">Your booking reference:</p>
                 <p className="text-center text-lg font-bold">{bookingReference}</p>
                 <p className="text-center text-lg mt-8 mb-2">A receipt and booking reference for this transaction has been sent to this email:</p>
-                <p className="text-center text-lg font-bold">{email}</p> {/** email from context not working!!!! */}
+                <p className="text-center text-lg font-bold mb-5">{email}</p> 
             </div>
         </div>
         </div>

@@ -13,7 +13,7 @@ import Space from "@/components/Space";
 export default function Home() {
   return (
    
-    <div>
+    <div className="home-page">
   <NavbarSearch />
   <SearchBar />
   <h2 className="text-4xl text-center font-custom text-black mt-12 mb-12">Tailored Retreats for Every Budget</h2>
@@ -26,7 +26,8 @@ export default function Home() {
   <h2 className="text-4xl text-center font-custom text-black mt-12 mb-12 pb-12">Discover Memorable Retreat Experiences</h2>
     <ReviewCard />
     <Space />
-    
+   
+
   
   
    

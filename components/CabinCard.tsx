@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as faStarRegular, faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
 import Link from 'next/link';
+import CabinCardMobile from "./CabinCardMobile";
 
 
 
@@ -26,15 +27,17 @@ type PackageCardProps = {
 
 export default function CabinCard({selectedPackage }: PackageCardProps) {
   
-
-
-
     return (
        <div className="flex justify-center">
-        <div className="w-[80%] h-[35%] p-0 border rounded-xl shadow-lg flex relative">
-          <div className="flex-none mr-5 h-full relative">
-            <img src={selectedPackage.imgUrl} alt={selectedPackage.name} className="object-cover h-[100%] w-[100%] rounded-l-xl" />
-            <div className="absolute top-0 right-0 w-[30%] flex items-center justify-center text-center font-lora text-lg font-bold border rounded-xl shadow-lg bg-white mt-3 mr-3">
+        
+      <div className="w-[80%] h-[35%] p-0 border rounded-xl shadow-lg flex relative">
+         <div className="sm:flex-none sm:mr-5 h-auto sm:h-full relative">
+            <img 
+            src={selectedPackage.imgUrl} 
+            alt={selectedPackage.name} 
+            className="object-cover w-full h-[100%] sm:w-[100%] sm:rounded-l-xl"
+            />
+            <div className="absolute top-0 right-0 w-[30%] sm:w-[30%] flex items-center justify-center text-center font-lora text-lg font-bold border rounded-xl shadow-lg bg-white mt-3 sm:mt-3 sm:mr-3">
               {selectedPackage.category}
             </div>
           </div>
@@ -44,7 +47,7 @@ export default function CabinCard({selectedPackage }: PackageCardProps) {
                     <div className="flex">
                         <h3 className="text-lg font-bold font-lora">{selectedPackage.name}</h3>
                     </div>
-                    <div className="w-[30%] font-lora text-lg font-bold border rounded-lg shadow-lg text-center">
+                    <div className="font-lora text-lg font-bold inline-block  max-w-[250px] sm:max-w-[150px] shadow-lg text-center border rounded-xl">
                         {selectedPackage.price} 
                         <span className="font-lora font-bold mr-1 ml-1">kr</span>
                         <span className="font-lora font-normal mr-1">per night</span>
@@ -80,13 +83,17 @@ export default function CabinCard({selectedPackage }: PackageCardProps) {
                     </button>
                     </Link>
                         </div>
-                    </div>
 
-                
+                    
+                    </div>
+                      <CabinCardMobile selectedPackage={selectedPackage} />
+                    </div>
+                      
+                        </div>
+                        
+                    
+                         
                          </div>
-                        </div>
-                        </div>
-                       
     );
 }
    

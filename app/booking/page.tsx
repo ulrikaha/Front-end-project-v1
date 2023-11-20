@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation"
   function BookingPage() {
     const router = useRouter();
 
-    type FormData = {
+    type _FormData = {
       checkIn: string;
       checkOut: string;
       cabinName: string;
@@ -26,10 +26,11 @@ import { useRouter } from "next/navigation"
       zipCode: string;
       city: string;
       paymentOptions: string [];
+      onSubmit: (formData: _FormData) => Promise<void>; //ska detta vara här?
 };
 
 
-const handleConfirmBooking = async (formData: FormData) => {
+const handleConfirmBooking = async (formData: _FormData) => {
   try {
     // Post data to the booking API route
     const response = await fetch("/api/booking", {

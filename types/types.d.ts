@@ -16,3 +16,19 @@ type Package = {
     checkInDate: Date;
     checkOutDate: Date;
   }
+
+//Used in CabinCard.tsx and CabinCardMobile.tsx
+  type PackageCardProps = {
+    selectedPackage: {
+    imgUrl: string;
+    cabinName: string;
+    description: string;
+    name: string;
+    price: number;
+    info: string;
+    rating: number;
+    category: string;
+    cabinId: string;
+};
+ 
+}

@@ -1,9 +1,11 @@
-import React from 'react'
+
 
 function Space() {
-    return (
-        <div className="space"></div>
-    )
+  return (
+    <div>
+        
+    </div>
+  )
 }
 
 export default Space

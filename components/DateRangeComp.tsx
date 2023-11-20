@@ -64,10 +64,10 @@ const DateRangeComp = () => {
             <DateRange
               onChange={(item) => {
                 if (item.selection.startDate && item.selection.endDate) {
-                  setRange([
+                  setRange((prevRange) => [
                     {
-                      startDate: item.selection.startDate,
-                      endDate: item.selection.endDate,
+                      startDate: item.selection.startDate || prevRange[0].startDate,
+                      endDate: item.selection.endDate || prevRange[0].startDate,
                       key: 'selection',
                     },
                   ]);
