@@ -3,7 +3,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faPhone, faEnvelope, faLocationDot} from '@fortawesome/free-solid-svg-icons';
-
+import Link from 'next/link';
 
 import React from 'react';
 
@@ -57,7 +57,9 @@ const Footer = () => {
                 <div>
                     <div className="flex justify-center">
                         <div>
-                            <img className="h-40" src="/imgs/logo-1.png" alt="Logo" />
+                            <Link href="/">
+                                <img className="h-40" src="/imgs/logo-1.png" alt="Logo" />
+                            </Link>
                         </div>
                     </div>
                     <div className="flex justify-center text-custom-yellow text-sm mt-2">

@@ -1,9 +1,9 @@
-
+import NavbarGreen from "@/components/NavbarGreen";
 import UserInfo from "@/components/UserInfo";
 
 
 
 export default function Dashboard() {
-  return <>  <UserInfo />;
+  return <> <NavbarGreen /> <UserInfo />;
   </>
 }

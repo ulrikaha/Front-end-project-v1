@@ -13,7 +13,7 @@ export async function GET(req, {params} ) {
     await connectMongoDB();
 
     const cabin = await Package.findOne({ cabinId: id }); 
-    console.log(cabin); // Add a console.log statement here
+    //console.log(cabin); 
 
     if (!cabin) {
       return NextResponse.json({

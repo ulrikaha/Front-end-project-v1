@@ -1,5 +1,6 @@
 'use client';
 
+import NavbarGreen from '@/components/NavbarGreen';
 import { useEffect, useState } from 'react';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
@@ -58,6 +59,7 @@ export default function CabinPage({ params }: { params: { id: string } }) {
 
     return (
         <>
+        <NavbarGreen /> 
         {cabin ? (
           <div className="card w-full border shadow-lg relative">
             <div className="flex justify-between items-center pt-5">

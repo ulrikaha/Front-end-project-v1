@@ -1,5 +1,6 @@
 'use client';
 
+import NavbarGreen from "@/components/NavbarGreen";
 import BookingInformation from "@/components/BookingInformation"
 import { useRouter } from "next/navigation"
 
@@ -63,6 +64,7 @@ const handleConfirmBooking = async (formData: _FormData) => {
     
 return (
   <div>
+    <NavbarGreen />
     {/* Pass the handleConfirmBooking function to BookingInformation */}
     <BookingInformation onSubmit={handleConfirmBooking} />
   </div>
