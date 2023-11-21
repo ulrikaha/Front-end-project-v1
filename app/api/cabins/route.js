@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 
 export async function GET(req, res) {
-  console.log(req);
+  //console.log(req);
   const url = new URL(req.url)
   const selectedPackage = url.searchParams.get("selectedPackage")
   //console.log("REQUEST", url, url.searchParams)

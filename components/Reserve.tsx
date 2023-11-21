@@ -8,6 +8,7 @@ import { useRouter } from 'next/navigation';
 
 
 
+
 interface ReserveProps {
     selectedPackage: Package;
 }
@@ -16,6 +17,7 @@ function Reserve({ selectedPackage }: ReserveProps) {
     const { startDate, endDate, updateSearchCriteria } = useSearchContext();
     const router = useRouter();
     const { setBookingDetails } = useBookingDetailsContext();
+   
 
     const handleReserveClick = () => {
         // Save reservation details in the context
@@ -33,8 +35,8 @@ function Reserve({ selectedPackage }: ReserveProps) {
        
 
     return (
-        <div className="grid place-items-center mt-12 font-lora">
-        <div className="shadow-lg p-5 rounded-lg border-t-12 border-custom-green -mt-4">
+        <div className="sticky-mobile grid place-items-center mt-12 font-lora">
+        <div className="shadow-lg p-5 rounded-lg border-t-12 border-custom-green -mt-4 p-4">
               <div className="flex items-center font-bold mb-2 mt-4">
                 <h2 className="mr-2">2 x</h2>
                     <FontAwesomeIcon icon={faUser} style={{ color: "#000000" }} />
@@ -45,7 +47,7 @@ function Reserve({ selectedPackage }: ReserveProps) {
             <h2 className="font-bold mb-3">Cabin Name: {selectedPackage.cabinName}</h2>
             <h2 className="font-bold mb-3">Included: {selectedPackage.included.join( ', ')}</h2>
            
-            <h2 className="font-bold mb-2">Price: {selectedPackage.price} Kr</h2>
+            <h2 className="font-bold text-xl mb-2 mt-5">Price: {selectedPackage.price} Kr</h2>
 
            <div className="flex justify-center">
             <button

@@ -1,10 +1,9 @@
-
+// Create a space between components
 
 function Space() {
   return (
-    <div>
-        
-    </div>
+    <div className="h-[60px] w-[100%]">
+</div>
   )
 }
 

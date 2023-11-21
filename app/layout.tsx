@@ -5,7 +5,9 @@ import { BookingProvider } from '@/context/BookingConfirmContext';
 import type { Metadata } from 'next'
 import './globals.css'
 import Footer from '@/components/Footer'
-import NavbarGreen from '@/components/NavbarGreen'
+//import NavbarGreen from '@/components/NavbarGreen';
+
+
 
 
 
@@ -27,8 +29,8 @@ export default function RootLayout({
         <SearchProvider>
           <BookingDetailsContextProvider>
             <BookingProvider>
-          <NavbarGreen />
-            {children}
+         {/*<NavbarGreen />*/}
+          {children}
             <Footer />
             </BookingProvider>
           </BookingDetailsContextProvider>

@@ -61,7 +61,7 @@ export default function CabinPage({ params }: { params: { id: string } }) {
         {cabin ? (
           <div className="card w-full border shadow-lg relative">
             <div className="flex justify-between items-center pt-5">
-            <img src={cabin.imgUrl} alt={cabin.category} className="w-full sm:h-[50%] md:h-[30%] lg:h-[25%] object-cover" />
+            <img src={cabin.imgUrl} alt={cabin.category} className="w-full sm:h-[50%] md:h-[30%] lg:h-[25%] object-cover m-8" />
             </div>  
             <br />
             <Slider {...settings}>
@@ -71,19 +71,21 @@ export default function CabinPage({ params }: { params: { id: string } }) {
         </div>
       ))}
     </Slider>
-            <div className="absolute top-5 right-0 w-[30%] flex items-center justify-center text-center font-lora text-lg font-bold border rounded-xl shadow-lg bg-white mt-3 mr-3">
+            <div className="absolute top-12 right-12 w-[20%] flex items-center justify-center text-center font-lora text-lg font-bold border rounded-xl shadow-lg bg-white mt-3 mr-3">
               {cabin.category}
             </div>
             <Reserve  selectedPackage={cabin} /> 
             <Facilities />
             <div className="p-4">
-            <div className=" <div className='flex flex-wrap justify-around items-start w-11/12 mx-auto mt-12 bg-grey-100 p-4 border rounded shadow-lg font-lora'>">
-                <h3 className="mt-10 ml-7 text-xl font-bold font-lora">Included in the package</h3>
-                <ul className='list-disc pl-5 ml-7'>
+            <div className="flex flex-wrap items-start w-11/12 mx-auto mt-12 bg-grey-100 p-4 border rounded shadow-lg font-lora'>">
+            <div className="w-full md:w-1/2">
+                <h3 className="mt-5 mb-3 ml-7 text-xl font-bold font-lora">Included in the package</h3>
+                <ul className='list-disc pl-5 ml-6'>
                   {cabin.included.map((includedItem, index) => (
                     <li key={index}>{includedItem}</li>
                   ))}
                 </ul>
+              </div>
               </div>
             </div>
             <ReviewCarousel />
