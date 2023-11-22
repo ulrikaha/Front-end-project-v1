@@ -2,7 +2,7 @@
 import { useSearchContext } from '../context/SearchContext'
 
 function PackageSelector() {
-  const { selectedPackage, updateSearchCriteria } = useSearchContext();
+  const { selectedPackage, setSelectedPackage } = useSearchContext();
 
   return (
    
@@ -12,11 +12,9 @@ function PackageSelector() {
       className="w-full"
       onChange={(e) => {
         const newSelectedPackage = e.target.value;
-        // Declare the variables before using them
-        const startDate = new Date();
-        const endDate = new Date();
+       
         // Update the context state here
-        updateSearchCriteria(startDate, endDate, newSelectedPackage);
+        setSelectedPackage(newSelectedPackage);
       }}
       value={selectedPackage}
     >

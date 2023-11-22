@@ -6,6 +6,7 @@ interface SearchContextType {
   startDate: Date;
   endDate: Date;
   selectedPackage: string;
+  setSelectedPackage: (selectedPackage: string) => void;
   updateSearchCriteria: (startDate: Date, endDate: Date, selectedPackage: string) => void;
 }
 
@@ -27,7 +28,7 @@ export function SearchProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <SearchContext.Provider value={{ startDate, endDate, selectedPackage, updateSearchCriteria }}>
+    <SearchContext.Provider value={{ startDate, endDate, selectedPackage, setSelectedPackage, updateSearchCriteria }}>
       {children}
     </SearchContext.Provider>
   );
