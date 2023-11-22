@@ -9,7 +9,7 @@
     background-repeat: no-repeat;
     background-position: center;
     background-image: url('/imgs/cabin-navbar.png');
-    height: 400px;
+    height: 450px;
   }
 
 
@@ -18,10 +18,7 @@
     display: block;
   }
 
-
-  .searchbar {
-     display: center;  
-    }
+   
   
   
   .custom-margin-left {

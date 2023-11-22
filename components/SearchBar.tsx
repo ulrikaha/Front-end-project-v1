@@ -10,7 +10,7 @@ import PackageSelector from "./PackageSelector";
 
 export default function SearchBar() {
   const router = useRouter();
-  const { startDate, endDate, selectedPackage, updateSearchCriteria } = useSearchContext();
+  const { startDate, endDate, selectedPackage, } = useSearchContext();
  
 
       const handleSearchClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
