@@ -20,7 +20,7 @@ const ReviewCard = () => {
                     <FontAwesomeIcon icon={faStar} style={{color: "#e4a935",}} />
                     <FontAwesomeIcon icon={faStar} style={{color: "#e4a935",}} />
                 </div>
-                    <p className="font-lora mt-5">
+                    <p className="font-lora mt-5 pl-2 pr-2">
                     We had an amazing time at the cabin. The trip to Åre with our friends that rented their own cabin was a great experience.
                    We would defeinitely recommend this to anyone who wants to experience the Swedish mountains. 
                    </p>
@@ -42,7 +42,7 @@ const ReviewCard = () => {
                     <FontAwesomeIcon icon={faStar} style={{color: "#e4a935",}} />
                     <FontAwesomeIcon icon={faStar} style={{color: "#e4a935",}} />
                     </div>
-                    <p className="font-lora mt-5">
+                    <p className="font-lora mt-5 pl-2 pr-2">
                     We had an amazing time at the cabin. The trip to Åre with our friends that rented their own cabin was a great experience.
                    We would defeinitely recommend this to anyone who wants to experience the Swedish mountains.
                 </p>
@@ -63,7 +63,7 @@ const ReviewCard = () => {
                     <FontAwesomeIcon icon={faStar} style={{color: "#e4a935",}} />
                     <FontAwesomeIcon icon={faStar} style={{color: "#e4a935",}} />
                 </div>
-                    <p className="font-lora mt-5">
+                    <p className="font-lora mt-5 pl-2 pr-2">
                     We had an amazing time at the cabin. The trip to Åre with our friends that rented their own cabin was a great experience.
                    We would defeinitely recommend this to anyone who wants to experience the Swedish mountains.
                 </p>
