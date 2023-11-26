@@ -27,3 +27,13 @@ type Package = {
 };
  
 }
+
+//Used in Reserve.tsx
+type ReserveProps = {
+  selectedPackage: Package;
+}
+
+//Used in BookingInformation.tsx
+type BookingInformationProps = {
+  onSubmit: () => void;
+}

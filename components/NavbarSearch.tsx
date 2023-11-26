@@ -19,8 +19,8 @@ const NavbarSearch = () => {
                         <Image
                             src="/imgs/logo-1.png"
                             alt="Nothernnest Retreat Logo"
-                            width={200} // This must be adjusted for mobile
-                            height={200} // This must be adjusted for mobile
+                            width={200} 
+                            height={200} 
                         />
                     </div>
                 </Link>

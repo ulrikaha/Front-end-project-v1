@@ -36,17 +36,7 @@ const AboutUs = () => {
              reservation process.<br></br>
            </p>
             </div>
-            
-
-
-
-
-
-
-
-
-
-        </div>
+             </div>
   )
 }
 

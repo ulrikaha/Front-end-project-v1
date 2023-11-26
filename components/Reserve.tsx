@@ -8,11 +8,6 @@ import { useRouter } from 'next/navigation';
 
 
 
-
-interface ReserveProps {
-    selectedPackage: Package;
-}
-
 function Reserve({ selectedPackage }: ReserveProps) {
     const { startDate, endDate, updateSearchCriteria } = useSearchContext();
     const router = useRouter();

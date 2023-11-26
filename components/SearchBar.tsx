@@ -1,5 +1,7 @@
 'use client';
 
+// Component to display the search bar
+
 import { useRouter } from 'next/navigation';
 import { useSearchContext } from '../context/SearchContext';
 import DateRangeComp from "./DateRangeComp";

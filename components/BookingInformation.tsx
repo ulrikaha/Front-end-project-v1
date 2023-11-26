@@ -6,9 +6,6 @@ import { useBookingContext } from "@/context/BookingConfirmContext";
 import { useState , useEffect } from "react";
 
 
-    interface BookingInformationProps {
-        onSubmit: () => void;
-    }
 
     function BookingInformation({ onSubmit }: BookingInformationProps) {
     const { startDate, endDate, selectedPackage } = useSearchContext();
@@ -151,7 +148,7 @@ const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
       };
     
 
-      console.log(formData) 
+      //console.log(formData) 
   // Call the onSubmit function passed from the parent component
   onSubmit(updatedFormData);
 };

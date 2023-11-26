@@ -1,5 +1,5 @@
 
-
+//Section Header component for the home page
 
 type SectionHeaderProps = {
     text: string;
