@@ -27,7 +27,7 @@ import { useRouter } from "next/navigation"
       zipCode: string;
       city: string;
       paymentOptions: string [];
-      onSubmit: (formData: _FormData) => Promise<void>; //ska detta vara här?
+      onSubmit: (formData: _FormData) => Promise<void>; 
 };
 
 

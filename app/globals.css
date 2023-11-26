@@ -19,8 +19,6 @@
   }
 
    
-  
-  
   .custom-margin-left {
     margin-left: 100px; /* For the search button on searchNav */
   }
@@ -32,11 +30,5 @@
     margin-top: 200px;
   }
 
-  /* Component Reserve sticky on Mobile */
-@media (max-width: 767px) {
-  .sticky-mobile {
-    position: sticky;
-    bottom: 0;
-    width: 100%;
-  }
-}
+
+

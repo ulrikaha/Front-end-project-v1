@@ -19,20 +19,17 @@ const Footer = () => {
 
                         
                         <div className="flex justify-center">
-                        <p className="text-white font-lora leading-loose">
-                         <FontAwesomeIcon icon={faLocationDot} style={{color: "#cbb26a",}} className="w-10 h-10 mr-2 " />
-                         Norrskensvägen 235<br />
-                            <br />
-                        235 00 Åre, Sweden <br />
-                            <br />
-                            <FontAwesomeIcon icon={faPhone} style={{color: "#cbb26a",}} className="w-10 h-10 mr-2" />
-                            +46 123 423 024<br />
-                            <br />
-                            <FontAwesomeIcon icon={faEnvelope} style={{color: "#cbb26a",}} className="w-10 h-10 mr-2" />
-                            contact@northernnest.com
-                        </p>
-                        </div>
-
+    <div className="text-white font-lora leading-loose">
+        <FontAwesomeIcon icon={faLocationDot} style={{color: "#cbb26a"}} className="w-10 h-10 mr-2 " />
+        Norrskensvägen 235<br />
+        <div className="ml-11">235 00 Åre, Sweden </div>  <br />
+        <FontAwesomeIcon icon={faPhone} style={{color: "#cbb26a"}} className="w-10 h-10 mr-2" />
+        +46 123 423 024<br />
+        <br />
+        <FontAwesomeIcon icon={faEnvelope} style={{color: "#cbb26a"}} className="w-10 h-10 mr-2" />
+        contact@northernnest.com
+    </div>
+</div>
                     </div>
 
                     <div className="w-full lg:w-1/3">

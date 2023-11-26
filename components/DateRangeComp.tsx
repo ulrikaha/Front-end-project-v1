@@ -2,9 +2,11 @@ import { useEffect, useRef, useState } from 'react';
 import { DateRange } from 'react-date-range';
 import format from 'date-fns/format';
 import { useSearchContext } from '../context/SearchContext';
+import { enUS } from 'date-fns/locale';
 
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
+
 
 const DateRangeComp = () => {
   const { startDate, endDate, selectedPackage, updateSearchCriteria } = useSearchContext();
@@ -50,9 +52,10 @@ const DateRangeComp = () => {
 
       <div className="relative">
         <input
-          value={`${format(range[0].startDate, 'dd/MM/yyyy')} to ${format(
+          value={`${format(range[0].startDate, 'dd/MM/yyyy', { locale: enUS })} to ${format(
             range[0].endDate,
-            'dd/MM/yyyy'
+            'dd/MM/yyyy' ,
+            { locale: enUS }
           )}`}
           readOnly
           className="inputBox border rounded-xl p-2 h-20 w-100 font-custom text-xl text-center"
@@ -85,6 +88,7 @@ const DateRangeComp = () => {
               ranges={range}
               months={1}
               direction="horizontal"
+              locale={enUS}
               className="calendarElement"
             />
           </div>

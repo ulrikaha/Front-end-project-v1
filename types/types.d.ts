@@ -11,13 +11,8 @@ type Package = {
     imgs: string[],
   }
 
-  type Booking = {
-    package: Package;
-    checkInDate: Date;
-    checkOutDate: Date;
-  }
 
-//Used in CabinCard.tsx and CabinCardMobile.tsx
+//Used in CabinCard2.tsx 
   type PackageCardProps = {
     selectedPackage: {
     imgUrl: string;
@@ -25,7 +20,7 @@ type Package = {
     description: string;
     name: string;
     price: number;
-    info: string;
+    info: string[];
     rating: number;
     category: string;
     cabinId: string;

@@ -14,7 +14,7 @@ export default function SearchBar() {
  
 
       const handleSearchClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
-        console.log(startDate, endDate, selectedPackage)
+        //console.log(startDate, endDate, selectedPackage)
         try {
           const response = await fetch(`/api/cabins?selectedPackage=${selectedPackage}`);
           const data = await response.json();
@@ -30,7 +30,7 @@ export default function SearchBar() {
   
 
 <div className="searchbar bar w-full flex justify-center">
-    <div className="bg-gray-200 rounded-3xl shadow-md p-6 m-4 md:w-1/2 w-full">  {/* Adjusted width classes */}
+    <div className="bg-gray-200 rounded-3xl shadow-md p-6 m-4 md:w-1/2 w-full">  
         <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-4">  {/* Adjusted flex and space classes */}
             <DateRangeComp />
             <PackageSelector />

@@ -7,10 +7,6 @@ import './globals.css'
 import Footer from '@/components/Footer'
 
 
-
-
-
-
 export const metadata: Metadata = {
   title: 'NorthernNest Retreat',
   description: 'Cabin rentals',
@@ -29,7 +25,6 @@ export default function RootLayout({
         <SearchProvider>
           <BookingDetailsContextProvider>
             <BookingProvider>
-         {/*<NavbarGreen />*/}
           {children}
             <Footer />
             </BookingProvider>

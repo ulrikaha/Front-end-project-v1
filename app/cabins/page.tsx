@@ -41,11 +41,13 @@ export default function CabinsPage() {
      
       <div className='flex flex-wrap justify-center mt-10'>
           
-      {data && data.data && Array.isArray(data.data) && data.data.map((selectedPackage: any, _id: string) => (
-          <CabinCard2
-            key={selectedPackage._id}
-            selectedPackage={selectedPackage}
-          />
+      {data && 
+      data.data && 
+      Array.isArray(data.data) && 
+      data.data.map((selectedPackage: any, _id: string) => (
+        <div key={selectedPackage._id} className="my-2">
+        <CabinCard2 selectedPackage={selectedPackage} />
+      </div>
         ))}
       </div>
       
